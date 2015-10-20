@@ -1,0 +1,6 @@
+<form name="viewForm" id="viewForm" action="db?action=SAVEVIEW" method="POST"  >
+    <div><label for="viewName">$i18n.view.name:</label><input type="text" name="viewName" id="viewName" /></div>
+    <div><label for="viewGlobal">$i18n.view.global:</label><input type="checkbox" name="viewGlobal" id="viewGlobal" /></div>
+
+</form>
+    <button id="btnSave" type="button" onclick="vdk.saveView()" >$i18n.results.ulozit_pohled</button>

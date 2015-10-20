@@ -1,0 +1,17 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN"> 
+<html>
+#parse("html_header.vm")
+<body>
+<div id="wrapper">
+    <div id="main">
+    #parse("header.vm")
+    <div class="clear"></div>
+    #parse("searchForm.vm")
+    <div class="clear"></div>
+    #parse("content.vm")
+    <div class="clear" style="height: 32px;"></div>
+    #parse("footer.vm")
+    </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,72 @@
+<div id="searchDiv" class="ui-widget-header">
+    <form id="searchForm" action="." method="GET" onsubmit="return doSearch();"  >
+        #if(${params.wanted})
+            <input name="wanted" id="wanted" type="hidden" value="${params.wanted}" />
+        #end
+        <input name="offset" id="offset" type="hidden" value="$!{params.offset}" />
+        <input name="hits" id="hits" type="hidden" value="$!{params.hits}" />
+        <input name="q" id="q" type="text" value="$!esc.html(${params.q})" size="40" style="float:left; border-right: none;" />
+        
+        <input type="hidden" name="title_suggest" id="title_suggest" value="$!{params.title_suggest}" />
+        <input value="$i18n.form.search" type="submit" onclick="doSearch();" />
+#if(${params.onlyOffers})
+    <input type="hidden" name="onlyOffers" id="onlyOffers" class="fq" value="yes" />   
+#end  
+#if(${params.onlyDemands})
+    <input type="hidden" name="onlyDemands" id="onlyDemands" class="fq" value="yes" />   
+#end  
+#if(${params.onlyMatches})
+    <input type="hidden" name="onlyMatches" id="onlyMatches" class="fq" value="yes" />   
+#end  
+
+#foreach($offer in $params.offer)   
+    <input type="hidden" name="offer" id="offer_${offer}" value="${offer}" />
+#end
+
+#foreach($offer in $params.getStrings('offer'))
+    <input type="hidden" name="offer" id="offer${foreach.index}" value="$offer" />
+#end
+
+#foreach($demand in $params.getStrings('demand'))
+    <input type="hidden" name="demand" id="demand${foreach.index}" value="$demand" />
+#end
+
+#foreach($fq in $params.getStrings('fq'))
+    <input type="hidden" name="fq" id="fq${foreach.index}" value="$esc.html($fq)" />
+#end
+
+#foreach($ex in $params.getStrings('exs'))  
+        <input type="hidden" name="exs" id="ex${foreach.index}" class="ex" value="$!esc.html(${ex})" />
+#end
+
+#foreach($zdroj in $params.getStrings('zdroj'))
+        <input type="hidden" name="zdroj" id="zdroj${foreach.index}" class="zdroj" value="$!esc.html(${zdroj})" />
+#end
+<button onclick="$('#adv_fields').toggle();return false;" >+</button>
+<div id="adv_fields" class="form">
+    <div><label for="f_title">název:</label>
+    <input type="text" name="title" id="f_title" value="$!esc.html(${params.title})" />
+    </div>
+    <div><label for="f_author">autor:</label>
+    <input type="text" name="author" id="f_author" value="$!esc.html(${params.author})" />
+    </div>
+    <div><label for="f_rok">rok vydání:</label>
+    <input type="text" name="rok" id="f_rok" value="$!esc.html(${params.rok})" />
+    </div>
+    <div><label for="f_isbn">isbn:</label>
+    <input type="text" name="isbn" id="f_isbn" value="$!esc.html(${params.isbn})" />
+    </div>
+    <div><label for="f_issn">issn:</label>
+    <input type="text" name="issn" id="f_issn" value="$!esc.html(${params.issn})" />
+    </div>
+    <div><label for="f_ccnb">ččnb:</label>
+    <input type="text" name="ccnb" id="f_ccnb" value="$!esc.html(${params.ccnb})" />
+    </div>
+    <div><label for="f_vydavatel">vydavatel:</label>
+    <input type="text" name="vydavatel" id="f_vydavatel" value="$!esc.html(${params.vydavatel})" />
+    </div>
+</div>
+#parse("actions.vm")
+    </form>
+        <div id="autocomplete"></div>
+</div>

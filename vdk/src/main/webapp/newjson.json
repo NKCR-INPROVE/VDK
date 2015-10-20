@@ -1,0 +1,138 @@
+{
+    "45": {
+        "title": "Klíč k bohatství : tajemství, které vám pomůže vydělat velké peníze /   ",
+        "knihovna": "VKOL",
+        "code": "4a5020b1becd5b20cfec5387feb6832d",
+        "date": "04.09.2015",
+        "fields": {
+            "comment": "aaa"
+        },
+        "zaznamdemand_id": "45"
+    },
+    "44": {
+        "title": "Jak si správně přát : dosáhněte svých cílů a uskutečněte své sny /   ",
+        "knihovna": "VKOL",
+        "code": "3ecfc3abea60f61f5b35e60ad3e9e488",
+        "date": "04.09.2015",
+        "fields": {
+            "comment": "aaa"
+        },
+        "zaznamdemand_id": "44"
+    },
+    "47": {
+        "title": "Jak uspět při obchodním telefonování : získejte jistotu, domluvte si více schůzek a uzavřete více obchodů /   ",
+        "knihovna": "VKOL",
+        "code": "9a9c1ec0b622e2aa7dfe264426ae2199",
+        "date": "04.09.2015",
+        "fields": {
+            "comment": "sss"
+        },
+        "zaznamdemand_id": "47"
+    },
+    "46": {
+        "title": "(Ne)rovné šance na vzdělání : vzdělanostní nerovnosti v České republice /   ",
+        "knihovna": "VKOL",
+        "code": "577a57e936960ee3b20c174860e9635b",
+        "date": "04.09.2015",
+        "fields": {
+            "comment": "zzz"
+        },
+        "zaznamdemand_id": "46"
+    },
+    "33": {
+        "title": "Život v oceánech /    ",
+        "knihovna": "NKP",
+        "zaznam": "oai:aleph.vkol.cz:SVK01-000492591",
+        "code": "ca4a41a55979fbc7ad889e4a3a232fe0",
+        "date": "01.09.2015",
+        "exemplar": "cc130bf33173f37c916a5dcfe53139b0",
+        "fields": {
+            "comment": ""
+        },
+        "zaznamdemand_id": "33"
+    },
+    "14": {
+        "knihovna": "NKP",
+        "date": "28.01.2015",
+        "fields": {
+            "comment": "poptavka"
+        },
+        "zaznamdemand_id": "14"
+    },
+    "38": {
+        "title": "Život v oceánech /    ",
+        "knihovna": "NKP",
+        "zaznam": "oai:aleph.mzk.cz:MZK01-000545892",
+        "code": "ca4a41a55979fbc7ad889e4a3a232fe0",
+        "date": "01.09.2015",
+        "exemplar": "400a7610a78c71a91a76410444b92aeb",
+        "fields": {
+            "comment": ""
+        },
+        "zaznamdemand_id": "38"
+    },
+    "43": {
+        "title": "Andalusie /    ",
+        "knihovna": "VKOL",
+        "code": "7c762a987ba6c32b4562d28b86597fbf",
+        "date": "03.09.2015",
+        "fields": {
+            "comment": "qqq"
+        },
+        "zaznamdemand_id": "43"
+    },
+    "42": {
+        "title": "Úvod do environmentalistiky /    ",
+        "knihovna": "VKOL",
+        "code": "e8cf353f7a451440649fbe564ef7ef6c",
+        "date": "03.09.2015",
+        "fields": {
+            "comment": "ggg"
+        },
+        "zaznamdemand_id": "42"
+    },
+    "32": {
+        "title": "Unbegrenzt teilbare Punktprozesse /    ",
+        "knihovna": "NKP",
+        "zaznam": "oai:aleph.mzk.cz:MZK01-001252846",
+        "code": "c312b8d6d3d0714b090efb7c4210552b",
+        "date": "01.09.2015",
+        "exemplar": "3356cb1ed1e811b007c0a78535ebb8a7",
+        "fields": {
+            "comment": ""
+        },
+        "zaznamdemand_id": "32"
+    },
+    "41": {
+        "title": "Úvod do environmentalistiky /    ",
+        "knihovna": "VKOL",
+        "code": "e8cf353f7a451440649fbe564ef7ef6c",
+        "date": "03.09.2015",
+        "fields": {
+            "comment": "ttt"
+        },
+        "zaznamdemand_id": "41"
+    },
+    "31": {
+        "title": "Geopotential and oceanographic signals from inversion of single and dual satellite altimetry /    ",
+        "knihovna": "NKP",
+        "zaznam": "oai:aleph.mzk.cz:MZK01-000529347",
+        "code": "0097c6639c7aa31523e5632710391c02",
+        "date": "01.09.2015",
+        "exemplar": "98f3ead0b8998ebfbbad58c10682ed7e",
+        "fields": {
+            "comment": ""
+        },
+        "zaznamdemand_id": "31"
+    },
+    "40": {
+        "title": "Úvod do environmentalistiky /    ",
+        "knihovna": "VKOL",
+        "code": "e8cf353f7a451440649fbe564ef7ef6c",
+        "date": "03.09.2015",
+        "fields": {
+            "comment": "www"
+        },
+        "zaznamdemand_id": "40"
+    }
+}

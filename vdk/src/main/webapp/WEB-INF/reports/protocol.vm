@@ -1,0 +1,76 @@
+<html>
+<head>
+    <title>$i18n.application.title</title>
+    <link type="text/css" href="../css/main.css" rel="stylesheet" media="print" />
+</head>
+<body class="protocol">
+
+#set($protocol = $report.protocol)
+
+#foreach ($key in $protocol.prejimajici.keys())
+#set($prejimajici = $protocol.prejimajici.getJSONObject($key))
+
+<div class="header">
+<h2>Předávací protokol vybraných knih na základě nabídky $protocol.offer.nazev</h2>
+
+<h3>Nabízející knihovna:</h3>
+<div>Název knihovny $protocol.knihovna.name</div>
+<div>Adresa knihovny $protocol.knihovna.adresa</div>
+<div>Sigla $protocol.knihovna.sigla</div>
+
+<h3>Přejímající knihovna:</h3>
+<div>Název knihovny $prejimajici.knihovna.name</div>
+<div>Adresa knihovny $prejimajici.knihovna.adresa</div>
+<div>Sigla $prejimajici.knihovna.sigla</div>
+
+<h3>Nabídka:</h3>
+<div>Název nabídky $protocol.offer.nazev</div>
+##<div>Datum zveřejnění nabídky $repHeader.created</div>
+##<div>Datum ukončení nabídky $repHeader.closed</div>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<div style="width:100%">
+    <div style="float:left;width:40%;">
+        ..............................
+        <br/>
+        Podpis za nabízející knihovnu
+    </div>
+    <div style="float:right;width:40%;">
+        ................................
+        <br/>
+        Podpis za přejímající knihovnu
+    </div>
+</div>
+
+</div>
+<div class="page-break"></div>
+<div class="content" style="clear:both;">
+
+#set ($prid = $prejimajici.knihovna.id)
+#set ($rows = $report.getItems($prid))
+<h3>Seznam</h3>
+<ul>
+#foreach ($item in $rows)
+    <li>
+    <div>#if($item.has('title'))$item.title#end 
+    #if($item.zaznam != "")($item.zaznam)#end
+    </div>
+    <div>cena: $item.fields.optString('cena')</div>
+    <div>comment: $item.fields.optString('comment')</div>
+    #if($item.has('zaznam_asoc'))
+    <div>zaznam v katalogu: ($item.zaznam_asoc)</div>
+    #end
+
+    </li>
+#end
+</ul>
+</div>
+#if( $foreach.hasNext )<div class="page-break"></div>#end
+
+#end
+</body>
+</html>

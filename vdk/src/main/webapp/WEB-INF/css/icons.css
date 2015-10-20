@@ -1,0 +1,77 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : Feb 5, 2014, 9:17:54 AM
+    Author     : alberto
+*/
+
+.icon{
+    height:24px; 
+    width:24px; 
+    display:inline-block; 
+    position:relative;
+    border:1px solid rgba(0, 0, 0, 0.3);
+    border-radius:2px;
+    -webkit-border-radius:2px;
+    -moz-border-radius:2px;
+} 
+
+
+.icon:before, .icon:after{
+    background:#fff; 
+}    
+.icon:hover, .icon:hover:before, .icon:hover:after{
+    border-color: #ffffff; 
+}
+
+
+.big{
+    position:relative;
+}
+
+svg{
+    position:relative;
+    background: transparent;
+    /*box-shadow: rgba(0, 0, 0, 0.5) 2px 2px 5px 0px;*/
+}
+.small svg{
+    width: 28px;
+    height: 28px;
+    size: contain;
+}
+.medium svg{
+    width: 48px;
+    height: 48px;
+    size: contain;
+}
+
+.big svg{
+    width: 128px;
+    height: 128px;
+    size: contain;
+}
+
+svg  .svg-icon{
+    fill:none; 
+    stroke:rgba(23, 23, 100, 1); 
+    stroke-width:5; 
+    stroke-linecap:round;
+    stroke-linejoin:round;
+}
+
+svg:hover{
+    -webkit-filter: drop-shadow(2px 2px 5px rgba(0,0,0,0.5));
+    filter: url(shadow.svg#dropShadow);
+}
+
+
+svg:hover *{
+    fill:blue; 
+    stroke:white; 
+}
+
+
+

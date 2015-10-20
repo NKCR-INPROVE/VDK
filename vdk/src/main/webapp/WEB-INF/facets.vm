@@ -1,0 +1,2 @@
+#set($xslf = $import.read("xsl/facets.xsl"))
+$xslt.transform($results, $xslf)

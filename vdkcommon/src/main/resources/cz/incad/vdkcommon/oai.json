@@ -1,0 +1,25 @@
+{
+        "knihovna":"NKP",
+	"indexDirectory": "/home/alberto/.vdkcr/OAI/harvest",
+	"homeDir": "/home/alberto/.vdkcr/OAI",
+        "updateTimeFile": "oai.time",
+        "charset": "UTF-8",
+        "dateFormat": "yyyy-MM-dd",
+        "oaiDateFormat": "yyyy-MM-dd'T'HH:mm:ss'Z'",
+        "filePathFormat": "yyyy/MM/dd/HH",
+        "separator": ";",
+        "xmlField": "",
+        
+        "baseUrl": "http://localhost/OAI",
+        "set": "VDK",
+        "metadataPrefix": "marc21",
+        "verb": "ListRecords",
+        "identifierPrefix": "oai:localhost:",
+         "comment" : "year|month|day|hour|minute|second",
+        "interval": "day",
+        
+        "zdroj": "OAI test",
+        "base": "VDK",
+        "harvester": "OAI",
+        "originformat": "marc21"
+}

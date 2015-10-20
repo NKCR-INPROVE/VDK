@@ -1,0 +1,23 @@
+<form name="addToOfferForm" id="addToOfferForm" action="db" method="POST" >
+    <input name="id" value="" type="hidden" />
+    <input name="action" value="ADDFORMTOOFFER" type="hidden" />
+
+    <div><label for="isbn">ISBN (020a):</label><input type="text" name="isbn" id="isbn" data-field="isbn" class="searcher" /><div style="margin-bottom:2px;"></div></div>
+    <div><label for="issn">ISSN (022a):</label><input type="text" name="issn" id="issn" data-field="issn" class="searcher" /><div style="margin-bottom:2px;"></div></div>
+    <div><label for="ccnb">čČNB (015a):</label><input type="text" name="ccnb" id="ccnb" data-field="ccnb" class="searcher" /><div style="margin-bottom:2px;"></div></div>
+
+    <div><label for="titul">Titul (245a) (245b) (245c):</label><input type="text" name="titul" data-field="title" id="titul" class="searcher" /><div style="margin-bottom:2px;"></div></div>
+    <div><label for="f245n">Cislo casti (245n):</label><input type="text" name="f245n" id="f245n" /></div>
+    <div><label for="f245p">Název části (245p):</label><input type="text" name="f245p" id="f245p" /></div>
+
+    <div><label for=f250a"">Údaje o vydání  (250a):</label><input type="text" name="f250a" id="f250a" /></div>
+    <div><label for="f100a">Autor (100a) jmeno, prijmeni:</label><input type="text" name="f100a" id="f100a" /></div>
+    <div><label for="f110a">Autor – korporace (110a):</label><input type="text" name="f110a" id="f110a" /></div>
+    <div><label for="f111a">Autor – jméno akce (např. konference) (111a):</label><input type="text" name="f111a" id="f111a" /></div>
+    <div><label for="f260">Nakladatelské údaje – místo „a“, jméno nakladatele „b“, datum vydání  „c“) (260a)(260b)(260c) :</label><input type="text" name="f260" id="f260" /></div>
+    <div><label for="cena">Cena:</label><input type="text" name="cena" id="cena" /></div>
+    <div><label for="comment">Poznamka:</label><input type="text" name="comment" id="comment" /></div>
+<div style="clear:both;">
+    <button id="btnAdd" type="button" onclick="vdk.offers.addForm()" >Přídat do nabídky</button>
+</div>
+</form>

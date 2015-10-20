@@ -1,0 +1,90 @@
+<div id="nabidka">
+<div id="useroffers" style="float:left;width:200px;">
+    <ul></ul>
+    <div>
+        <a href="javascript:vdk.addOffer();">Přídat nabídku</a>
+    </div>
+</div>
+<div id="useroffer" style="float:left;width:calc(98% - 200px);display:none;">
+    <div>Pridat</div>
+    <form name="addToOfferForm" id="addToOfferForm" action="db" method="POST" >
+        <input name="idOffer" value="" type="hidden" />
+        <input name="action" value="ADDTOOFFER" type="hidden" />
+        
+        <div><label for="isbn">ISBN (020a):</label><input type="text" name="isbn" id="isbn" /></div>
+        <div><label for="issn">ISSN (022a):</label><input type="text" name="issn" id="issn" /></div>
+        <div><label for="ccnb">čČNB (015a):</label><input type="text" name="ccnb" id="ccnb" /></div>
+
+        <div><label for="titul">Titul (245a) (245b) (245c):</label><input type="text" name="titul" id="titul" /></div>
+        <div><label for="f245n">Cislo casti (245n):</label><input type="text" name="f245n" id="f245n" /></div>
+        <div><label for="f245p">Název části (245p):</label><input type="text" name="f245p" id="f245p" /></div>
+
+        <div><label for=f250a"">Údaje o vydání  (250a):</label><input type="text" name="f250a" id="f250a" /></div>
+        <div><label for="f100a">Autor (100a) jmeno, prijmeni:</label><input type="text" name="f100a" id="f100a" /></div>
+        <div><label for="f110a">Autor – korporace (110a):</label><input type="text" name="f110a" id="f110a" /></div>
+        <div><label for="f111a">Autor – jméno akce (např. konference) (111a):</label><input type="text" name="f111a" id="f111a" /></div>
+        <div><label for="f260">Nakladatelské údaje – místo „a“, jméno nakladatele „b“, datum vydání  „c“) (260a)(260b)(260c) :</label><input type="text" name="f260" id="f260" /></div>
+        <div><label for="comment">Poznamka:</label><input type="text" name="comment" id="comment" /></div>
+        <button id="btnAdd" type="button" onclick="vdk.addFormToOffer()" >Přídat do nabídky</button>
+    </form>
+    <hr/>
+    <form name="importOfferForm" id="importOfferForm" action="db" method="POST" enctype="multipart/mixed" >
+        <input name="idOffer" value="" type="hidden" />
+        <div><label for="offerFile"><fmt:message key="nabidka.file" />:</label><input type="file" name="offerFile" id="offerFile" /></div>
+        <button id="btnImport" type="submit" >Přídat soubor do nabídky</button>
+        <div id="progress">
+            <div id="bar"></div>
+            <div id="percent">0%</div>
+        </div>
+
+        <div id="message"></div>
+    </form>
+</div>
+        </div>
+    <script>
+$(document).ready(function(){
+    
+    var options = { 
+    beforeSend: function(){
+        $("#progress").show();
+        //clear everything
+        $("#bar").width('0%');
+        $("#message").html("");
+        $("#percent").html("0%");
+    },
+    beforeSubmit: function(){
+        $("#importOfferForm input[name~='offerid']").val(vdk.activeofferid);
+        //if($("#offerName").val()==""){
+        //    alert("Nazev je povinni.");
+        //    return false;
+        //}
+    },
+    uploadProgress: function(event, position, total, percentComplete){
+        $("#bar").width(percentComplete+'%');
+        $("#percent").html(percentComplete+'%');
+        if(percentComplete==100){
+            $("#percent").html('Upload complete. Waiting for response...');
+        }
+ 
+    },
+    success: function(){
+        $("#bar").width('100%');
+        $("#percent").html('100% Upload complete. Waiting for response...');
+        //$('#importOfferForm').resetForm();
+ 
+    },
+    complete: function(response){
+        $("#message").html("<font color='green'>"+response.responseText+"</font>");
+        vdk.getOffers();
+    },
+    error: function(){
+        $("#message").html("<font color='red'> ERROR: unable to upload files</font>");
+    }
+ 
+}; 
+
+     $("#importOfferForm").ajaxForm(options);
+ 
+});
+ 
+</script>

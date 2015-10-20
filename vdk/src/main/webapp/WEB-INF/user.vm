@@ -1,0 +1,5 @@
+#if($logControl.logged)
+$logControl.knihovna.json
+#else
+{}
+#end

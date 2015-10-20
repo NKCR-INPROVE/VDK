@@ -1,0 +1,8 @@
+#if($logControl.logged)
+    $logControl.setKnihovna()
+#end
+#set($reqAddr = ".")
+#if($params.redirectURL)
+    #set($reqAddr = "?$params.redirectURL")
+#end
+$response.sendRedirect($reqAddr)

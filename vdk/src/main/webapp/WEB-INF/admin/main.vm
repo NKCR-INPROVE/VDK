@@ -1,0 +1,60 @@
+<div id="admin">
+    <h2>$i18n.administration</h2>
+<div class="tabs">
+<ul>
+    <li><a href="#tabs-user">$i18n.users</a></li>
+    <li><a href="#tabs-jobs">$i18n.admin.jobs</a></li>
+    <li><a href="#tabs-conf">$i18n.admin.conf</a></li>
+</ul>
+    <div id="tabs-user">
+        <h3>$i18n.users</h3>
+        <ul id="users" style="float: left; border-right: 1px solid #ccc; width: 200px;padding: 3px;">
+        </ul>
+        <div id="user" style="float: left; margin-left: 10px; width: calc(100% - 220px);">
+            <button onclick="vdkAdmin.addUser()">$i18n.user.add</button>
+            <button onclick="vdkAdmin.deleteUser()">$i18n.user.delete</button>
+            <button onclick="vdkAdmin.addRole()">$i18n.user.role.add</button>
+            <button onclick="vdkAdmin.saveUser()">$i18n.user.save</button>
+            <div><input id="i_nazev" class="nazev" style="width: 50%;"></input></div>
+            <label for="i_priorita">$i18n.user.priorita: </label>
+            <select id="i_priorita" class="priorita">
+#foreach($level in $opt.levels)
+                <option>$level</option>
+#end
+            </select>
+            <label for="i_sigle">Sigla: </label><input id="i_sigla" class="sigla"></input>
+            <label for="i_adresa">$i18n.user.adresa: </label><input id="i_adresa" class="adresa"></input>
+            <label for="i_telefon">$i18n.user.telefon: </label><input id="i_telefon" class="telefon"></input>
+            <label for="i_email">email: </label><input id="i_email" class="email"></input>
+            <h4>$i18n.user.roles:</h4><ul class="roles"></ul>
+        </div>
+        <div style="clear:both;"></div>
+    </div>
+    <div id="tabs-jobs">
+        <h3>$i18n.admin.jobs <button onclick="vdkAdmin.getJobs();">refresh</button></h3>
+        <table id="jobs">
+            <thead><th>name</th><th>state</th><th>next run</th><th>last run</th><th>&nbsp;</th><th>&nbsp;</th></thead>
+        </table>
+    </div>
+    <div id="tabs-conf">
+        <div class="content">
+            <button onclick="vdkAdmin.saveConf()">$i18n.user.save</button>
+            <div>
+            <label for="conf_exp">$i18n.conf.expiration: </label><input id="conf_exp" class="exp"></input>
+            </div>
+            <div>
+            <label for="conf_email">$i18n.conf.email: </label><input id="conf_email" class="email"></input>
+            </div>
+            <div>
+            <label for="conf_emailBody">$i18n.conf.emailBody: </label>
+            <textarea id="conf_emailBody" class="emailBody"></textarea>
+            </div>
+        </div>
+        <div class="error"></div>
+    </div>
+</div>
+</div>
+<script type="text/javascript" src="js/admin.js"></script>
+<script type="text/javascript">
+    var vdkAdmin = new VDK_ADMIN();
+</script>

@@ -1,0 +1,38 @@
+<tools>
+    <data type="boolean" key="xhtml" value="true"/>
+    <data type="boolean" key="isSimple" value="true"/>
+    <data type="number" key="version" value="2.0"/>
+    <toolbox scope="request">
+        <tool key="esc" class="org.apache.velocity.tools.generic.EscapeTool" />
+        <tool key="import" class="org.apache.velocity.tools.view.ImportTool" />
+        <tool class="org.apache.velocity.tools.generic.ConversionTool"
+              dateFormat="yyyy-MM-dd"/>
+        <tool key="link" class="org.apache.velocity.tools.view.LinkTool" />
+        <tool key="date" class="org.apache.velocity.tools.generic.DateTool" />
+        <tool class="org.apache.velocity.tools.view.ParameterTool" />
+        
+        <tool key="i18n" class="cz.incad.vdk.client.tools.LanguageTool" bundles="labels" />
+        <tool key="logControl" class="cz.incad.vdk.client.tools.LoggedControllerTool" />
+        <tool key="xslt" class="cz.incad.vdk.client.tools.XSLTool" />
+        <tool key="search" class="cz.incad.vdk.client.tools.Search" />
+        <tool key="report" class="cz.incad.vdk.client.tools.ReportTool" />
+        <tool key="db" class="cz.incad.vdk.client.tools.DbTool" />
+        <tool key="sched" class="cz.incad.vdk.client.tools.SchedulerTool" />
+        <tool key="opt" class="cz.incad.vdk.client.tools.OptionsTool" />
+<!--
+        <tool class="cz.incad.kramerius.client.tools.CSSTool"
+              bundles="res.css"
+              key="css"/>
+        <tool class="cz.incad.kramerius.client.tools.ConfTool"
+              key="conf"/>
+        <tool key="search" class="cz.incad.kramerius.client.tools.Search" />
+
+-->
+     
+    </toolbox>
+    <toolbox scope="session">
+        <tool key="map" class="java.util.HashMap"/>
+    </toolbox>
+    <toolbox scope="application">
+   </toolbox>
+</tools>

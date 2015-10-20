@@ -1,0 +1,99 @@
+#if($search.hasFilters)
+
+    <h4 class="ui-accordion-header ui-helper-reset ui-state-default ui-accordion-icons ui-corner-all ui-state-focus">
+        <img src="img/funnel.png" alt="" style="margin-top:4px;margin-left:8px;" /> 
+        <span>$i18n.filter.used</span>
+        <a style="float:right;margin-top:6px;margin-right:4px;" href="."><img border="0" src="img/x.png" alt="" /></a>
+    </h4>
+    <ul>        
+#if(${params.exists('wanted')} && ${params.wanted} != '')
+    #set($disp = $i18n.filter.nechci.desc)
+    #if($params.wanted=='true')
+        #set($disp = $i18n.filter.chci.desc)
+    #end
+<li>
+     <a class="usedFilter" href="javascript:removeWanted();"><img border="0" src="img/x.png" alt="" />$disp</a>
+</li>    
+#end
+
+#if($params.onlyOffers) 
+<li>
+     <a class="usedFilter" href="javascript:removeOnlyOffers();"><img border="0" src="img/x.png" alt="" />$i18n.filter.onlyOffers</a>
+</li>
+#end
+
+#if($params.onlyDemands)
+<li>
+     <a class="usedFilter" href="javascript:removeOnlyDemands();"><img border="0" src="img/x.png" alt="" />$i18n.filter.onlyDemands</a>
+</li>
+#end
+
+#if($params.onlyMatches)
+<li>
+     <a class="usedFilter" href="javascript:removeOnlyMatches();"  title="$esc.html($i18n.filter.matches.desc)"><img border="0" src="img/x.png" alt="" />$i18n.filter.matches</a>
+</li>
+#end
+
+#foreach($demand in $params.getStrings('demand'))
+   <li>
+        <a class="usedFilter" href="javascript:removeDemand(${foreach.index});"><img border="0" src="img/x.png" alt="" />$i18n.filter.poptavka: ${demand}</a>
+   </li> 
+#end
+
+#foreach($offer in $params.getStrings('offer'))
+   <li>
+        <a class="usedFilter" href="javascript:removeOffer(${foreach.index});"><img border="0" src="img/x.png" alt="" />$i18n.filter.nabidka: ${offer}</a>
+   </li> 
+#end
+
+#if($params.q && $params.q != "")
+<li>
+    <a class="usedFilter" href="javascript:removeQuery();"><img border="0" src="img/x.png" alt="" />${params.q}</a>
+</li>
+#end
+
+#if($params.title_suggest && $params.title_suggest != "")
+#set ($ds = "#substringAfter($params.title_suggest, '##')")
+<li>
+     <a class="usedFilter" href="javascript:removeSuggest();"><img border="0" src="img/x.png" alt="" />$ds</a>
+</li>
+#end
+
+#foreach($fq1 in $params.getStrings('fq'))
+    #set($facetName = "#substringBefore($fq1, ':')")
+    #set($facetValue = "#substringAfter($fq1, ':')")
+    #set($facetValue = $facetValue.replaceAll('"', ''))
+    #set($facetValueDisp = $facetValue)
+    #set($link = "javascript:removeNav(${foreach.index})")
+    <li><a  class="usedFilter" href="${link}">
+        <img border="0" src="img/x.png" alt=""> $i18n.filter.get($facetName): ${facetValueDisp}</a>
+    </li>
+#end
+#foreach($zdroj in $params.getStrings('zdroj'))
+    #if($zdroj.startsWith('-'))
+        #set($loc = $i18n.filter.notzdroj)
+    #else
+        #set($loc = $i18n.filter.zdroj)
+    #end
+    #set($link = "javascript:removeZdroj(${foreach.index})")
+    <li><a  class="usedFilter" href="${link}">
+        <img border="0" src="img/x.png" alt=""> ${loc}: ${zdroj}</a>
+    </li>
+#end
+
+#foreach($ex in $params.getStrings('exs'))
+    #set($facetName = "#substringBefore($fq1, ':')")
+    #set($facetValue = "#substringAfter($fq1, ':')")
+    #set($facetValue = $facetValue.replaceAll('"', ''))
+    #set($link = "javascript:removeExs(${foreach.index})")
+    <li><a  class="usedFilter" href="${link}">
+        <img border="0" src="img/x.png" alt="">not in $i18n.filter.get($facetName): ${facetValueDisp}</a>
+    </li>
+#end
+    #if($logControl.logged)
+    <li>
+        <a href="javascript:vdk.openView();" class="ui-icon ui-icon-disk" title="$i18n.results.ulozit_pohled">$i18n.results.ulozit_pohled</a>
+    </li>
+    #end
+    </ul>
+#end

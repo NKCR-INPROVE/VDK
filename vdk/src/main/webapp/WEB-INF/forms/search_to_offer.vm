@@ -1,0 +1,15 @@
+<form name="searchToOfferForm" id="searchToOfferForm" action="search" method="POST" >
+    <input name="action" value="BYQUERY" type="hidden" />
+    
+    <div><label for="so_q">Text:</label><input type="text" name="q" id="so_q" data-field="text" class="searcher" /><span></span></div>
+    <div><label for="so_isbn">ISBN (020a):</label><input type="text" name="isbn" id="so_isbn" data-field="isbn" class="searcher" /><span></span></div>
+    <div><label for="so_issn">ISSN (022a):</label><input type="text" name="issn" id="so_issn" data-field="issn" class="searcher" /><span></span></div>
+    <div><label for="so_ccnb">čČNB (015a):</label><input type="text" name="ccnb" id="so_ccnb" data-field="ccnb" class="searcher" /><span></span></div>
+
+    <div><label for="so_titul">Titul (245a) (245b) (245c):</label><input type="text" name="titul" id="so_titul" data-field="title" class="searcher" /><span></span></div>
+    
+    <div><label for="so_cena">Cena:</label><input type="text" name="cena" id="so_cena" /></div>
+    <div><label for="so_comment">Poznamka:</label><input type="text" name="comment" id="so_comment" /></div>
+    <ul class="results"></ul>
+
+</form>

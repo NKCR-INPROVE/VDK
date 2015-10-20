@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Context antiJARLocking="true" path="/vdk">
+    <!--
+    <Resource auth="Container" 
+              driverClassName="org.postgresql.Driver" 
+              maxActive="100" maxIdle="30" maxWait="10000" 
+              name="jdbc/aplikatorDS" password="vdk" 
+              type="javax.sql.DataSource" 
+              url="jdbc:postgresql://localhost:5432/vdk" username="vdk"/>
+    <Resource name="jdbc/aplikatorDS" auth="Container" type="javax.sql.DataSource"
+       maxActive="100" maxIdle="30" maxWait="10000"
+       username="VDK_PROD" password="prod_vdk" driverClassName="oracle.jdbc.OracleDriver"
+       url="jdbc:oracle:thin:@//195.113.134.52:1521/orclRelief.nkp.cz"/>
+       -->
+</Context>

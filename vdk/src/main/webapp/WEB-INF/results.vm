@@ -1,0 +1,11 @@
+#set($xsl = $import.read("xsl/results_vdk_md5.xsl"))
+$xslt.addParam("locale", $i18n.language)
+$xslt.addParam("knihovna", $logControl.code)
+$xslt.addParam("priorita", $logControl.priorita)
+$xslt.transform($results, $xsl)
+
+<div id="bottomPagination">
+</div>
+<div id="summary" style="display:none;">
+    <div id="summaryContent"></div>
+</div>

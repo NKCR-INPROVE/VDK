@@ -1,0 +1,27 @@
+{
+    "solrHost": "http://localhost:8080/solr",
+    "solrCore": "vdk_md5",
+    "indexerXSL": "vdk_md5.xsl",
+    "indexerIdXSL": "vdk_id.xsl",
+    "facets": ["{!ex=dt}zdroj", 
+		"nabidka",
+                "bohemika",
+                "status",
+                "pocet_exemplaru"
+                ],
+    "user_facets": [],
+    "otherParams":{
+        "stats":"true",
+        "stats.field":"rokvydani"
+        
+    },
+    "expirationDays": 7,
+    
+    "admin.users.levels": [1,2,3],
+    "admin.email": "email@email.com",
+    "admin.email.offer.subject": "VDK Notification. Offer expired",
+    "admin.email.offer.body": "Offer ${offer.nazev} has expired. Click on ${offer.report} to view report",
+    "admin.email.demand.subject": "VDK Notification. Your demand harvested.",
+    "admin.email.demand.body": "Your demand on document ${demand.title} has been harvested. Click on ${demand.url} to view it",
+    "app.url": "localhost:8080/vdk"
+}

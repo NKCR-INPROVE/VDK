@@ -1,0 +1,52 @@
+#set($results = $search.asXML)
+    <div id="results_header">
+        #parse("results_header.vm")
+    </div>
+
+    <div id="content" >
+        <div id="navigators" >
+            #parse("used_filters.vm")
+            <div id="facets" >
+            #if($logControl.logged)
+                <h3>
+                    <span>$i18n.filter.matches</span>
+                </h3>
+                <div>
+                    <ul id="wanted_filter">
+                        <li><a href="javascript:filterOffers();" title="$esc.html($i18n.filter.nabidka)">:: $i18n.filter.nabidka</a></li>
+                        <li><a href="javascript:filterDemands();" title="$esc.html($i18n.filter.poptavka)">:: $i18n.filter.poptavka</a></li>
+                        <li><a href="javascript:addWanted();" title="$esc.html($i18n.filter.chci.desc)">:: $i18n.load.chci</a></li>
+                        <!--
+                        <li><a href="javascript:addNoWanted();" title="$esc.html($i18n.filter.nechci.desc)">:: $i18n.load.nechci</a></li>
+                        -->
+                        <li><a href="javascript:vdk.filterOnlyMatches();" title="$esc.html($i18n.filter.matches.desc)">:: $i18n.filter.matches</a></li>
+                    </ul>
+                </div>
+            #end
+#*
+                <h3>
+                    <span>$i18n.filter.nabidka</span>
+                </h3>
+                <div>
+                    <ul id="offers">
+                        <li><a href="javascript:filterOffers();" >:: $i18n.nabidka.all</a></li>
+                    </ul>
+                </div>
+                <h3>
+                    <span>$i18n.filter.poptavka</span>
+                </h3>
+                <div>
+                    <ul id="demands">
+                        <li><a href="javascript:filterDemands();" >:: $i18n.poptavka.all</a></li>
+                    </ul>
+                </div>
+*#
+            #parse("facets.vm")
+            </div>
+        </div>
+        <div id="results">
+
+        #parse("results.vm")
+
+        </div>
+    </div>

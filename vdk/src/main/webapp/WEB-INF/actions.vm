@@ -1,0 +1,13 @@
+
+    <div class="actions">
+        <a href="javascript:vdk.openExport();">export</a> | 
+        #if($logControl.logged)
+                <a href="javascript:vdk.demands.open();">$i18n.filter.onlyDemands</a> |
+                <a href="javascript:vdk.offers.open();">$i18n.filter.onlyOffers</a> |
+                #* <select id="activeOffers" onchange="vdk.selectActiveOffer();"></select> | *#
+        #end
+            <select id="saved_views" onchange="vdk.selectView();">
+                <option>$i18n.select.view</option></select>
+    </div>
+
+     

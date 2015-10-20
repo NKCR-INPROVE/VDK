@@ -1,0 +1,10 @@
+<div id="offersdialog">
+    <div id="useroffers" style="float:left;width:200px;">
+        <ul></ul>
+    </div>
+    <div id="useroffer" style="float:left;width:calc(98% - 200px);height:calc(100% - 17px)">
+        <div class="buttons">
+        </div>
+        <ul style="height:calc(100% - 22px);overflow:auto"></ul>
+    </div>
+</div>

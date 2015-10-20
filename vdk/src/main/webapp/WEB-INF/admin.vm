@@ -1,0 +1,15 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN"> 
+<html>
+#parse("html_header.vm")
+<body>
+<div id="wrapper">
+    <div id="main">
+    #parse("header.vm")
+    <div class="clear"></div>
+    #parse("admin/main.vm")
+    <div class="clear"></div>
+    #parse("footer.vm")
+    </div>
+</div>
+</body>
+</html>

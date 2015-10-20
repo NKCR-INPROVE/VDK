@@ -1,0 +1,76 @@
+<div>Import</div>
+
+<form name="importOfferForm" id="importOfferForm" action="db?action=IMPORTTOOFFER" method="POST" enctype="multipart/mixed" >
+    <input name="id" id="importOfferFormId" value="" type="hidden" />
+
+    <div><label for="offerFile">$i18n.nabidka.file :</label><input type="file" name="offerFile" id="offerFile" /></div>
+    <div>$i18n.nabidka.fileFormat:
+        <label for="fileFormatCSV">CSV</label><input type="radio" id="fileFormatCSV" name="fileFormat" value="CSV"/>&nbsp;&nbsp;
+        <label for="fileFormatALEPH">ALEPH</label><input id="fileFormatALEPH" type="radio" name="fileFormat" value="ALEPH" checked="checked"/>
+    </div>
+    <div>
+        <button id="btnImport" type="submit" >Přídat soubor do nabídky</button>
+    </div>
+    <div id="progress">
+        <div id="bar"></div>
+        <div id="percent"></div>
+    </div>
+
+    <div id="message"></div>
+</form>
+
+    <script>
+$(document).ready(function(){
+    
+    var options = { 
+    beforeSend: function(){
+       if (vdk.offers.activeid > 0) {
+            $("#importOfferFormId").val(vdk.offers.activeid);
+        } else {
+            alert("Neni zadna nabidka activni");
+            return false;
+        }
+        $("#progress").show();
+        //clear everything
+        $("#bar").width('0%');
+        $("#message").html("");
+        $("#percent").html("0%");
+    },
+    beforeSubmit: function(){
+       if (vdk.offers.activeid > 0) {
+            $("#importOfferFormId").val(vdk.offers.activeid);
+            return true;
+        } else {
+            alert("Neni zadna nabidka activni");
+            return false;
+        }
+    },
+    uploadProgress: function(event, position, total, percentComplete){
+        $("#bar").width(percentComplete+'%');
+        $("#percent").html(percentComplete+'%');
+        if(percentComplete==100){
+            $("#percent").html('Upload complete. Waiting for response...');
+        }
+ 
+    },
+    success: function(){
+        $("#bar").width('100%');
+        $("#percent").html('100% Upload complete. Waiting for response...');
+        //$('#importOfferForm').resetForm();
+ 
+    },
+    complete: function(response){
+        $("#message").html("<font color='green'>"+response.responseText+"</font>");
+        vdk.offers.getActiveOffer();
+    },
+    error: function(){
+        $("#message").html("<font color='red'> ERROR: unable to upload files</font>");
+    }
+ 
+}; 
+
+     $("#importOfferForm").ajaxForm(options);
+ 
+});
+ 
+</script>

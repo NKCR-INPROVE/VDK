@@ -1,0 +1,49 @@
+<html>
+<head>
+</head>
+<body class="report">
+<div class="header">
+#set($repHeader = $report.getOffer($params.id))
+#set($rep = $report.getOfferContent($params.id))
+<div>Offer: $repHeader.nazev</div>
+<div>Library: $repHeader.knihovna</div>
+<div>Expires: $repHeader.expires</div>
+<div>Closed: $repHeader.closed</div>
+<div>Docs in offer: $rep.keySet().size()</div>
+</div>
+<div class="content">
+
+<ul>
+#foreach ($key in $rep.keys())
+    <li>
+    #set($item = $rep.getJSONObject($key))
+    <div>$key: #if($item.has('title'))$item.title#end 
+    #if($item.zaznam != "")($item.zaznam)#end
+    </div>
+    <div>cena: $item.fields.optString('cena')</div>
+    <div>comment: $item.fields.optString('comment')</div>
+    #if($item.has('zaznam_asoc'))
+    <div>zaznam v katalogu: ($item.zaznam_asoc)</div>
+    #end
+
+    #if($item.wanted.length() > 0)
+        <div>Required by: 
+            #set($start = 0)
+            #set($end = $item.wanted.length() - 1)
+            #set($range = [$start..$end])
+            <ul>
+            #foreach($i in $range)
+               <li>$item.wanted.getJSONObject($i).knihovna, 
+                    $item.wanted.getJSONObject($i).priorita,
+                    #set($d = $convert.parseDate($item.wanted.getJSONObject($i).date, 'yyyy-MM-dd HH:mm:ss'))
+                    $date.format('dd/M/yyyy HH:mm:ss', $d)
+                </li>
+            #end
+            </ul>
+        </div>
+    #end
+</li>
+#end
+</ul></div>
+</body>
+</html>

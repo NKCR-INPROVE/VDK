@@ -1,0 +1,603 @@
+#wrapper
+{
+    overflow-y: auto;
+    height: 100%;
+}
+html, body{
+    font-family: verdana, arial,helvetica, sans-serif;
+    font-size: 11px;
+    margin: 0px;
+    padding: 0px;
+    overflow: hidden;
+    height: 100%;
+}
+table {
+    border-collapse: collapse;
+}
+td {
+    font-family:Verdana, Arial, Helvetica, Tahoma;
+    font-size:0.9em;
+}
+input[type="text"] {
+    border: 1px solid #818177;
+}
+form{
+    margin:0px;
+    padding:0px;
+}
+
+a{
+    color:#CC0000;
+    text-decoration:none;
+}
+a:hover {
+    color:#CC0000;
+    text-decoration:underline;
+}
+
+a.image:link, a.image:active, a.image:visited {
+    text-decoration:none;
+}
+a.image:hover {
+    text-decoration:underline;
+}
+
+
+.working{
+    cursor:wait;
+}
+
+.link {
+    cursor:pointer;
+}
+.link:hover {
+    text-decoration:underline;
+}
+.selected{
+    font-weight: bold;
+}
+
+
+.clear{
+    display:block;
+    clear:both;
+}
+
+#main{
+    width:100%;
+    margin:auto;
+    /*
+    border-style: solid;
+    border-width:0px 3px;
+    */
+}
+
+#foot{
+    text-align: center;
+    position: fixed;
+    bottom: 0px;
+    box-shadow: 0px -3px 5px rgba(0,0,0,0.75);
+    background-color: white;
+    width:100%;
+    padding: 5px;
+}
+
+/*** header ***/
+#header{
+    height:65px;
+    padding:0;
+    margin:0 5px;
+    position:relative;
+}
+
+#header *{
+    padding:0;
+    margin:0;
+    vertical-align: bottom;
+}
+
+#header .title{
+    padding-left:17px;
+    margin-top:2px;
+    font-size:32px;
+    color:black;
+    font-weight:bold;
+}
+
+#header .subtitle{
+    font-size:12px;
+    color:#CC0000;
+    font-weight:bold;
+}
+
+/** search div **/
+#searchDiv{
+    font-size:0.8em;
+    padding:2px;
+}
+
+#searchDiv input{
+    font-size: 14px;
+    font-weight: bold;
+}
+
+.advButton{
+    float:left;
+    background: white;
+    border: 1px solid;
+    border-left:none;
+    height:17px;
+    padding: 1px 0;
+}
+
+#adv_fields{
+    display:none;
+    position:absolute;
+    z-index:11;
+    padding: 5px;
+    width:386px;
+    background: white;
+    border: 1px solid gray;
+}
+
+.form label{
+    font-size: 1.3em;
+    width: 100px;
+}
+
+
+.form div{
+    padding: 5px;
+    float:right;
+}
+
+.form input{
+    width:280px;
+}
+
+/** Navigators ***/
+#navigators{
+    width:230px;
+    float:left;
+    border-bottom: 1px solid #C6C6C6;
+    margin: 0;
+    padding: 0;
+}
+
+#navigators li.more{
+    display:none;
+}
+
+.home ul{
+    padding: 3px;
+    padding-top: 0;
+    margin: 0;
+}
+.home ul li{
+    list-style: none;
+    padding: 3px;
+}
+
+#content{
+    overflow: hidden;
+    box-sizing: border-box;
+    width:100%;
+}
+
+
+#navigators ul{
+    padding: 3px;
+    padding-top: 0;
+    margin: 0;
+}
+#navigators ul li{
+    list-style: none;
+    padding: 3px;
+}
+
+#navigators .usedFilter{
+    padding-left: 0.2em;
+}
+#navigators h4 {
+    margin: 0px;
+    padding: 0px;
+    width: 100%;
+    border-top-width: 1px;
+    font-size:0.9em;
+    font-weight:bold;
+    height:24px;
+    vertical-align: middle;
+}
+#navigators h4 span{
+    padding-top: 8px;
+    padding-left:3px;
+    line-height:24px;
+
+}
+#navigators h4 img{
+    float:left;
+}
+
+/** Navigators ***/
+
+#collapsing a.sel{
+    font-weight: bold;
+}
+
+#results{
+    padding: 2px;
+    overflow:hidden;
+    border-left: 1px solid;
+}
+#results ul{
+    margin:2px;
+    padding:2px;
+}
+#results ul li{
+    list-style: none;
+    clear: both;
+    padding:2px;
+    margin-top:5px;
+}
+#results div.title{
+    font-weight: bold;
+    clear: both;
+}
+#results ul li.line{
+    border-bottom: 1px solid;
+}
+
+#results div.thumb{
+    padding:1px;
+}
+
+#results .icons{
+    float:left;
+    margin-right:3px;
+}
+
+#results .more_fields{  
+    position:relative;
+}
+
+#results .detail{
+    display:none;
+}
+
+#results .order {
+    font-size: 11px;
+    margin-right: 5px;
+    margin-top:12px;
+    text-align: right;
+    width: 100%;
+}
+
+#results .order div {
+    height: 18px;
+    vertical-align: middle;
+}
+#results .order * {
+    vertical-align: middle;
+    line-height: 18px;
+}
+
+.pagination .sel{
+    font-weight: bold;
+    font-size: 1.1em;
+}
+
+#results_header{
+    background: none repeat scroll 0 0 #EEEEEE;
+    color: #000000;
+    font-size: 10px;
+    margin: 0;
+    padding: 1px;
+}
+
+#summary .more .ui-tabs-panel{
+    overflow:auto;
+    height: 150px;
+}
+
+div.poptavka div{
+    display:inline-block;
+    border: solid #333333 1px;
+    background-color: #DDDDDD;
+    padding: 2px;
+    margin: 2px;
+    vertical-align: middle;
+    font-size: .8em;
+}
+
+div.nabidka div{
+    display:inline-block;
+    border: solid #333333 1px;
+    background-color: #DDDDDD;
+    margin: 2px;
+    vertical-align: middle;
+}
+
+div.nabidka label{
+    font-size: .8em;
+    margin-top: 4px;
+    display: inline-block;
+    float: right;
+}
+
+table.tex{
+    font-size: .85em;
+    color: #373737;
+    margin-left: 25px;
+    border: solid #666666 1px;
+    border-collapse: collapse;
+    width:80%;
+}
+
+table.tex th{
+    background-color: #cdcdcd;
+    color: #343434;
+    padding: 3px;
+    text-align:left;
+}
+
+table.tex tr.nabidka{
+    background-color: #CCCC22;
+}
+
+table.tex tr.nabidka_over{
+    border: solid 3px #CC9900;
+}
+
+table.tex tr.more{
+    display:none;
+}
+
+table.tex td{
+    border: solid #666666 1px;
+    border-collapse: collapse;
+    padding: 3px;
+}
+
+table.tex td.AR{
+    background-color:#CCEEEE;
+}
+
+table.tex td.P{
+    background-color:#EEEECC;
+}
+
+table.tex td.Z{
+    background-color:#CCEECC;
+}
+
+table.tex td.ZP{
+    background-color:#EECCEE;
+}
+
+table.tex td.A{
+    background-color:#CCCCEE;
+}
+
+table.tex td.V{
+    background-color:#EECCCC;
+}
+
+table.tex td.PK{
+    background-color:#EEEEEE;
+}
+
+table.tex td.N{
+    background-color:#AACCCC;
+}
+
+table.tex td.RZ{
+    background-color:#CCCC22;
+}
+
+#offer .nabidka{
+    float:right;
+    color:#222222;
+    text-align: right;
+}
+
+#offer .nabidka>div{
+    color:#22CC22;
+}
+
+.diffs{
+    display:none;
+    float:left;
+    background:white;
+    border:1px solid black;
+    position:absolute;
+    padding: 3px;
+}
+
+.ui-accordion .ui-accordion-content {
+    padding: .8em .1em;
+}
+
+.actions{
+    float: right;
+}
+
+.actions>a{
+    display: inline-block;
+    font-size: 1.4em;
+    margin:3px;
+    margin-top: 7px;
+}
+.actions>div{
+    display: inline-block;
+    float:right;
+}
+
+#export{
+    width: 90%;
+    text-align: center;
+    height: 400px;
+}
+
+#export textarea{
+    width: 90%;
+    height: 100%;
+    text-align: left;
+}
+
+.expired, .expired a{
+    color: red !important;
+}
+
+.csv{
+    cursor:pointer;
+}
+
+.csv1{
+    width: 400px;
+    overflow: visible;
+}
+
+#useroffer label, #searchToOfferForm label, #addToOfferForm label{
+    color: #767676;
+    display: block;
+}
+#useroffer input, #searchToOfferForm input, #addToOfferForm input{
+    width: 98%;
+}
+#useroffer div.buttons, #userdemands div.buttons{
+     position:relative;
+     height: 22px;
+}
+#useroffer button, #userdemands button{
+     position:relative;
+}
+#useroffer li button, #userdemands li button{
+     position:absolute;
+     top: 13px;
+}
+.wanted{
+     background-color: darkseagreen !important;
+     border: 1px solid green !important;
+}
+.nowanted{
+     background-color: rosybrown !important;
+     border: 1px solid darkred !important;
+}
+#useroffer li .wanted{
+     float: right;
+     margin: 2px;
+}
+#useroffer li .nowanted{
+     float: right;
+     margin: 2px;
+}
+
+
+
+#offersdialog ul, #userdemands ul{
+    padding:0px;
+}
+
+#offersdialog li{
+    list-style: none;
+    padding: 3px;
+}
+#offersdialog li.active a{
+    color: red;
+}
+
+#useroffer li{
+     position:relative;
+     min-height: 20px;
+}
+#useroffer li:nth-child(odd), #userdemands li:nth-child(odd), #searchToOfferForm li:nth-child(odd){
+     background: #eeeeee;
+}
+#useroffer li>div.label, #userdemands li>div.label{
+     margin-right: 30px;
+     display: inline-block;
+}
+
+#userdemands li{
+     position:relative;
+     min-height: 20px;
+    list-style: none;
+    padding: 3px;
+}
+
+#searchToOfferForm ul{
+    padding:0px;
+}
+
+#searchToOfferForm li{
+    list-style: none;
+    padding: 3px;
+}
+
+
+/* Admin */
+#admin {
+    font-size:1.2em;
+}
+#admin input{
+    margin: 3px;
+}
+#admin th{
+    background-color: #ddd;
+}
+
+#admin td{
+    padding: 3px;
+}
+#admin tr:nth-child(odd){
+    background-color: #f5f5f5;
+}
+#admin li:nth-child(odd){
+    background-color: #f5f5f5;
+}
+
+#jobs button{
+    margin-left: 5px;
+}
+#jobs button span{
+    padding: 1px 0;
+}
+
+#jobs .running{
+    color: green;
+}
+
+#jobs .waiting{
+    color: orangered;
+}
+#jobs .settings label{
+    margin-left: 5px;
+}
+
+#importOfferForm div{
+    margin: 5px;
+}
+
+
+    .page-break{
+        page-break-after: always;
+        page-break-inside: auto;
+    }
+    
+@media print {
+    html, body, .main-content, div, .protokol { 
+        height: auto;
+        float: none; 
+    }
+    body {
+        margin: 0.5cm;
+        font: 12pt Georgia, "Times New Roman", Times, serif;
+        line-height: 1.3;
+        height: auto;
+        
+    }
+    .protocol div.header {
+         
+         clear: both;
+     }
+}

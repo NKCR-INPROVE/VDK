@@ -1,0 +1,2 @@
+#set($results = $search.asXML)
+#set($xslf = $import.read("../xsl/export.xsl"))$xslt.transform($results, $xslf)
