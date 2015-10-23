@@ -138,6 +138,7 @@ public class Indexer {
     }
 
     public void reindex() throws Exception {
+        jobData.getOpts().put("full_index", true);
         clean();
         index();
         indexAllOffers();
