@@ -191,14 +191,18 @@ public class OAIHarvester {
                     logger.log(Level.INFO, "updating with resumptionToken: {0}", jobData.getResumptionToken());
                     getRecordWithResumptionToken(jobData.getResumptionToken());
                 } else {
-                    if (jobData.isFullIndex()) {
+                    if (jobData.isNoDate()) {
+                        getRecords();
+                    } else if (jobData.isFullIndex()) {
                         jobData.setFrom(getInitialDate());
+                        logger.log(Level.INFO, "updating from: " + jobData.getFrom());
+                        update(jobData.getFrom());
                     } else {
                         jobData.setFrom(statusJson.optString(LAST_HARVEST, getInitialDate()));
+                        logger.log(Level.INFO, "updating from: " + jobData.getFrom());
+                        update(jobData.getFrom());
 
                     }
-                    logger.log(Level.INFO, "updating from: " + jobData.getFrom());
-                    update(jobData.getFrom());
                 }
             }
 
@@ -217,7 +221,11 @@ public class OAIHarvester {
     }
 
     private void writeStatus(String from) throws FileNotFoundException, IOException {
-        statusJson.put(LAST_HARVEST, from);
+        if(from == null || "".equals(from)){
+            statusJson.put(LAST_HARVEST, jobData.getSdfoai().format(new Date()));
+        }else{
+            statusJson.put(LAST_HARVEST, from);
+        }
         File statusFile = new File(jobData.getStatusFile());
         FileUtils.writeStringToFile(statusFile, statusJson.toString());
     }
@@ -283,6 +291,17 @@ public class OAIHarvester {
         return xmlReader.getNodeValue("//oai:Identify/oai:earliestDatestamp/text()");
     }
 
+    private void getRecords() throws Exception {
+        String query = String.format("?verb=%s&metadataPrefix=%s&set=%s",
+                opts.getString("verb"),
+                jobData.getMetadataPrefix(),
+                opts.getString("set"));
+        jobData.setResumptionToken(getRecords(query));
+        while (jobData.getResumptionToken() != null && !jobData.getResumptionToken().equals("")) {
+            jobData.setResumptionToken(getRecords("?verb=" + opts.getString("verb") + "&resumptionToken=" + jobData.getResumptionToken()));
+        }
+    }
+
     private void getRecords(String from, String until) throws Exception {
         String query = String.format("?verb=%s&from=%s&until=%s&metadataPrefix=%s&set=%s",
                 opts.getString("verb"),
@@ -320,7 +339,13 @@ public class OAIHarvester {
             String identifier;
 
             String fileName = null;
-            String recdate = xmlReader.getNodeValue("//oai:record[position()=1]/oai:header/oai:datestamp/text()");
+            String recdate = jobData.getSdfoai().format(new Date());
+            if(!jobData.isNoDate()){
+                recdate = xmlReader.getNodeValue("//oai:record[position()=1]/oai:header/oai:datestamp/text()");
+            }
+            if(recdate == null || "".equals(recdate)){
+                recdate = jobData.getSdfoai().format(new Date());
+            }
             if (jobData.isSaveToDisk()) {
                 fileName = writeNodeToFile(xmlReader.getNodeElement(),
                         recdate,

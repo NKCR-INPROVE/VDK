@@ -40,6 +40,7 @@ public class HarvesterJobData {
     private boolean onlyIdentifiers = false;
     private boolean onlyHarvest = false;
     private boolean continueOnDocError = false;
+    private boolean noDate = false;
     private String from;
     private String to;
     private String resumptionToken = null;
@@ -86,6 +87,7 @@ public class HarvesterJobData {
         
         this.fullIndex = jdata.getBoolean("fullIndex", false);
         this.onlyHarvest = jdata.getBoolean("onlyHarvest", false);
+        this.noDate = jdata.getBoolean("noDate", false);
         this.startIndex = jdata.getInt("startIndex", -1);
 
         this.pathToData = jdata.getString("indexDirectory");
@@ -93,8 +95,6 @@ public class HarvesterJobData {
         
         this.sdfoai = new SimpleDateFormat(jdata.getString("oaiDateFormat"));
         this.sdf = new SimpleDateFormat(jdata.getString("filePathFormat"));
-
-        
 
         this.metadataPrefix = jdata.getString("metadataPrefix");
 
@@ -129,6 +129,20 @@ public class HarvesterJobData {
      */
     public void setFromDisk(boolean fromDisk) {
         this.fromDisk = fromDisk;
+    }
+
+    /**
+     * @return the noDate
+     */
+    public boolean isNoDate() {
+        return noDate;
+    }
+
+    /**
+     * @param noDate the fullIndex to set
+     */
+    public void setNoDate(boolean noDate) {
+        this.noDate = noDate;
     }
 
     /**

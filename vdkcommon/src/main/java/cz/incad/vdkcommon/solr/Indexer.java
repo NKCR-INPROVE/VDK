@@ -32,6 +32,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -72,6 +73,7 @@ public class Indexer {
     int total = 0;
     int offerIndexed = 0;
     int demandIndexed = 0;
+    Map<String, SolrDocument> demandsCache;
     String errorMsg = "";
 
     private final String LAST_UPDATE = "last_run";
@@ -687,7 +689,7 @@ public class Indexer {
             sb.append("<add>");
 
             SolrQuery query = new SolrQuery("code:\"" + uniqueCode + "\"");
-            query.addField("id,code,code_type,xml");
+            query.addField("id,code,code_type,xml,bohemika");
             query.setRows(1000);
             SolrDocumentList docs = IndexerQuery.query(opts.getString("solrIdCore", "vdk_id"), query);
             Iterator<SolrDocument> iter = docs.iterator();
@@ -701,6 +703,8 @@ public class Indexer {
                 boolean bohemika = false;
                 if (resultDoc.getFieldValue("bohemika") != null) {
                     bohemika = (Boolean) resultDoc.getFieldValue("bohemika");
+                }else{
+                    bohemika = Bohemika.isBohemika((String)resultDoc.getFieldValue("xml"));
                 }
 
                 sb.append(transformXML((String) resultDoc.getFieldValue("xml"),
@@ -730,12 +734,33 @@ public class Indexer {
         SolrIndexerCommiter.postData("<delete><id>" + identifier + "</id></delete>");
         SolrIndexerCommiter.postData("<commit/>");
     }
+    
+    private boolean isInDemandsCache(String code){
+        if(demandsCache == null){
+            try {
+                SolrQuery query = new SolrQuery("poptavka_ext:[* TO *]");
+                query.addField("id,code,poptavka_ext,title");
+                query.setRows(1000);
+                demandsCache = new HashMap<>();
+                SolrDocumentList docs = IndexerQuery.query(query);
+                Iterator<SolrDocument> iter = docs.iterator();
+                while (iter.hasNext()) {
+                    SolrDocument doc = iter.next();
+                    demandsCache.put((String) doc.getFieldValue("code"), doc);
+
+                }
+            } catch (SolrServerException | IOException ex) {
+                logger.log(Level.SEVERE, null, ex);
+            }
+        }
+        return demandsCache.containsKey(code);
+    }
 
     public void store(String id, String code, String codeType, boolean bohemika, String xml) throws Exception {
 
         StringBuilder sb = new StringBuilder();
         try {
-            logger.log(Level.INFO, "Storing document...");
+            logger.log(Level.FINE, "Storing document " + id);
             sb.append("<add>");
 
             sb.append(doSorlXML(xml,
@@ -761,24 +786,27 @@ public class Indexer {
     }
     
     private void checkDemand(String code, String id){
-        try {
-            SolrQuery query = new SolrQuery("code:\"" + code + "\"");
-            query.addField("id,code,poptavka_ext,title");
-            query.setRows(1000);
-            SolrDocumentList docs = IndexerQuery.query(query);
-            Iterator<SolrDocument> iter = docs.iterator();
-            while (iter.hasNext()) {
-                sendDemandMail(iter.next(), id);
-                
+//        try {
+            if(isInDemandsCache(code)){
+                sendDemandMail(demandsCache.get(code), id);
             }
-        } catch (SolrServerException | IOException ex) {
-            logger.log(Level.SEVERE, null, ex);
-        }
+//            SolrQuery query = new SolrQuery("code:\"" + code + "\"");
+//            query.addFilterQuery("poptavka_ext:[* TO *]");
+//            query.addField("id,code,poptavka_ext,title");
+//            query.setRows(1000);
+//            SolrDocumentList docs = IndexerQuery.query(query);
+//            Iterator<SolrDocument> iter = docs.iterator();
+//            while (iter.hasNext()) {
+//                sendDemandMail(iter.next(), id);
+//            }
+//        } catch (SolrServerException | IOException ex) {
+//            logger.log(Level.SEVERE, null, ex);
+//        }
     }
     
     private void sendDemandMail(SolrDocument resultDoc, String id){
         try {
-            String title =(String) resultDoc.getFieldValue("title");
+            String title =(String) resultDoc.getFieldValues("title").toArray()[0];
             String pop = (String) resultDoc.getFieldValue("poptavka_ext");
                 JSONObject j = new JSONObject(pop);
                 
@@ -917,6 +945,9 @@ public class Indexer {
                     if (doc.has("timestamp")) {
                         statusJson.put(LAST_UPDATE, doc.getString("timestamp"));
                         writeStatus();
+                    }else{
+                        logger.log(Level.INFO, "TIMESTAMP MISSING!!!!");
+                        
                     }
                 } else {
                     boolean bohemika;
