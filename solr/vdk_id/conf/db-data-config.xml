@@ -1,0 +1,57 @@
+<dataConfig>
+  
+    <dataSource driver="org.postgresql.Driver" url="jdbc:postgresql://localhost:5432/vdk" name="db"
+		user="vdk"
+		password="vdk" />
+    <dataSource type="FileDataSource" encoding="UTF-8" name="oai" />
+    
+    <document>
+        <entity name="Zaznam" dataSource="db" pk="zaznam_id" 
+		query="select zaznam_id, identifikator, uniquecode, codetype, hlavninazev, knihovna, sourcexml from Zaznam"
+                deltaQuery="select zaznam_id from zaznam where update_timestamp > '${dataimporter.last_index_time}'">  
+            <field name="id" column="identifikator" />
+            <field name="code" column="uniquecode" />
+            <field name="code_type" column="codetype" />
+            <field name="zdroj" column="knihovna" />
+            <field name="title" column="hlavninazev" />
+            <field name="xml" column="sourcexml" />
+	    
+        </entity>
+	
+	
+	
+	<entity name="jc" rootEntity="false" dataSource="null"
+             processor="FileListEntityProcessor"
+             fileName="^.*\.xml$" recursive="true"
+             baseDir="/home/alberto/.vdkcr/OAI/harvest/VKOL/2015/01/02"
+             >
+	  <entity name="x" rootEntity="true"
+		  dataSource="oai"
+		  processor="XPathEntityProcessor"
+		  url="${jc.fileAbsolutePath}"
+		  stream="false" forEach="/OAI-PMH/ListRecords/record"
+		  transformer="DateFormatTransformer,TemplateTransformer,RegexTransformer,LogTransformer"
+		  logTemplate="      processing ${jc.fileAbsolutePath}"
+		  logLevel="info"
+		  xsl="xslt/vdk.xsl" useSolrAddSchema="true"
+		  >
+
+		  <!--
+		  <field column="id" xpath="/OAI-PMH/ListRecords/record/header/identifier" />
+		  <field column="code" xpath="/OAI-PMH/ListRecords/record/aa" />
+		  <field column="code_type" xpath="/OAI-PMH/ListRecords/record/md5" />
+		  <field column="zdroj" xpath="/OAI-PMH/ListRecords/record/knihovna" />
+		  <field column="title" xpath="/OAI-PMH/ListRecords/record/metadata/record/datafield[@tag='245']/subfield[@code='a']" />
+		  <field column="ccnb" xpath="/OAI-PMH/ListRecords/record/metadata/record/datafield[@tag='015']/subfield[@code='a']" />
+		  <field column="isbn" xpath="/OAI-PMH/ListRecords/record/metadata/record/datafield[@tag='020']/subfield[@code='a']" />
+		  <field column="issn" xpath="/OAI-PMH/ListRecords/record/metadata/record/datafield[@tag='022']/subfield[@code='a']" />
+		  <field column="xml" xpath="/OAI-PMH/ListRecords/record" flatten="true" />
+		  -->
+
+	    
+
+	  </entity>
+	</entity>
+    </document>
+</dataConfig>
+
