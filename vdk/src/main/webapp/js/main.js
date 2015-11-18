@@ -390,7 +390,7 @@ function zdrojIcon(zdroj, isNKF) {
             title = 'UKF';
         }
     } else {
-        return "img/icons/zdroj/" + zdroj + ".gif";
+        return zdroj;
     }
     return '<img width="16" src="' + url + '" title="' + title + '"/>';
 }

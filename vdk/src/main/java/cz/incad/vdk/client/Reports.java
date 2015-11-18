@@ -31,7 +31,7 @@ public class Reports extends HttpServlet {
     public static final Logger LOGGER = Logger.getLogger(Reports.class.getName());
     public static final String ACTION_NAME = "action";
     static SimpleDateFormat sdf = new SimpleDateFormat("dd.MM.yyyy");
-    
+
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -71,7 +71,6 @@ public class Reports extends HttpServlet {
             out.print(e1.toString());
         }
     }
-
 
     private static JSONArray wantedJSON(ResultSet rs) throws Exception {
         JSONArray ja = new JSONArray();
@@ -217,7 +216,7 @@ public class Reports extends HttpServlet {
         } catch (Exception ex) {
             LOGGER.log(Level.SEVERE, null, ex);
             json.put("error", ex);
-        } 
+        }
         return json;
     }
 
@@ -261,7 +260,7 @@ public class Reports extends HttpServlet {
         } catch (Exception ex) {
             LOGGER.log(Level.SEVERE, null, ex);
             json.put("error", ex);
-        } 
+        }
         return json;
     }
 
@@ -308,161 +307,159 @@ public class Reports extends HttpServlet {
             }
         } catch (Exception ex) {
             json.put("error", ex);
-        } 
+        }
         return json;
     }
-
-    
 
     enum Actions {
 
         GETLIBRARYWANTED {
-                    @Override
-                    void doPerform(HttpServletRequest req, HttpServletResponse resp) throws Exception {
+            @Override
+            void doPerform(HttpServletRequest req, HttpServletResponse resp) throws Exception {
 
-                        resp.setContentType("application/json");
-                        JSONObject json = new JSONObject();
-                        PrintWriter out = resp.getWriter();
+                resp.setContentType("application/json");
+                JSONObject json = new JSONObject();
+                PrintWriter out = resp.getWriter();
 
-                        Connection conn = null;
+                Connection conn = null;
 
-                        try {
-                            Knihovna kn = (Knihovna) req.getSession().getAttribute("knihovna");
-                            if (kn != null) {
-                                conn = DbUtils.getConnection();
-                                JSONArray ja = getLibraryWanted(conn, kn.getId());
-                                json.put(kn.getCode(), ja);
-                            } else {
-                                json.put("error", "nejste prihlasen");
-                            }
-                        } catch (Exception ex) {
-                            LOGGER.log(Level.SEVERE, "get wanted failed", ex);
-                            json.put("error", ex.toString());
-                        } 
-                        out.println(json.toString());
+                try {
+                    Knihovna kn = (Knihovna) req.getSession().getAttribute("knihovna");
+                    if (kn != null) {
+                        conn = DbUtils.getConnection();
+                        JSONArray ja = getLibraryWanted(conn, kn.getId());
+                        json.put(kn.getCode(), ja);
+                    } else {
+                        json.put("error", "nejste prihlasen");
                     }
-                },
+                } catch (Exception ex) {
+                    LOGGER.log(Level.SEVERE, "get wanted failed", ex);
+                    json.put("error", ex.toString());
+                }
+                out.println(json.toString());
+            }
+        },
         GETLIBRARYWANTEDBYCODE {
-                    @Override
-                    void doPerform(HttpServletRequest req, HttpServletResponse resp) throws Exception {
+            @Override
+            void doPerform(HttpServletRequest req, HttpServletResponse resp) throws Exception {
 
-                        resp.setContentType("application/json");
-                        JSONObject json = new JSONObject();
-                        PrintWriter out = resp.getWriter();
+                resp.setContentType("application/json");
+                JSONObject json = new JSONObject();
+                PrintWriter out = resp.getWriter();
 
-                        Connection conn = null;
+                Connection conn = null;
 
-                        try {
-                            Knihovna kn = (Knihovna) req.getSession().getAttribute("knihovna");
-                            if (kn != null) {
-                                conn = DbUtils.getConnection();
-                                String code = req.getParameter("code");
-                                JSONArray ja = getLibraryWantedByCode(conn, code, kn.getId());
-                                json.put(code, ja);
-                            } else {
-                                json.put("error", "nejste prihlasen");
-                            }
-                        } catch (Exception ex) {
-                            LOGGER.log(Level.SEVERE, "get wanted failed", ex);
-                            json.put("error", ex.toString());
-                        } 
-                        out.println(json.toString());
+                try {
+                    Knihovna kn = (Knihovna) req.getSession().getAttribute("knihovna");
+                    if (kn != null) {
+                        conn = DbUtils.getConnection();
+                        String code = req.getParameter("code");
+                        JSONArray ja = getLibraryWantedByCode(conn, code, kn.getId());
+                        json.put(code, ja);
+                    } else {
+                        json.put("error", "nejste prihlasen");
                     }
-                },
+                } catch (Exception ex) {
+                    LOGGER.log(Level.SEVERE, "get wanted failed", ex);
+                    json.put("error", ex.toString());
+                }
+                out.println(json.toString());
+            }
+        },
         GETWANTEDBYCODE {
-                    @Override
-                    void doPerform(HttpServletRequest req, HttpServletResponse resp) throws Exception {
+            @Override
+            void doPerform(HttpServletRequest req, HttpServletResponse resp) throws Exception {
 
-                        resp.setContentType("application/json");
-                        JSONObject json = new JSONObject();
-                        PrintWriter out = resp.getWriter();
+                resp.setContentType("application/json");
+                JSONObject json = new JSONObject();
+                PrintWriter out = resp.getWriter();
 
-                        Connection conn = null;
+                Connection conn = null;
 
-                        try {
-                            //Knihovna kn = (Knihovna) req.getSession().getAttribute("knihovna");
-                            //if (kn != null) {
-                            conn = DbUtils.getConnection();
-                            String code = req.getParameter("code");
-                            JSONArray ja = getWantedByCode(conn, code);
-                            json.put(code, ja);
+                try {
+                    //Knihovna kn = (Knihovna) req.getSession().getAttribute("knihovna");
+                    //if (kn != null) {
+                    conn = DbUtils.getConnection();
+                    String code = req.getParameter("code");
+                    JSONArray ja = getWantedByCode(conn, code);
+                    json.put(code, ja);
 //                            } else {
 //                                json.put("error", "nejste prihlasen");
 //                            }
-                        } catch (Exception ex) {
-                            LOGGER.log(Level.SEVERE, "get wanted failed", ex);
-                            json.put("error", ex.toString());
-                        } 
-                        out.println(json.toString());
-                    }
-                },
+                } catch (Exception ex) {
+                    LOGGER.log(Level.SEVERE, "get wanted failed", ex);
+                    json.put("error", ex.toString());
+                }
+                out.println(json.toString());
+            }
+        },
         GETWANTED {
-                    @Override
-                    void doPerform(HttpServletRequest req, HttpServletResponse resp) throws Exception {
+            @Override
+            void doPerform(HttpServletRequest req, HttpServletResponse resp) throws Exception {
 
-                        resp.setContentType("application/json");
-                        PrintWriter out = resp.getWriter();
+                resp.setContentType("application/json");
+                PrintWriter out = resp.getWriter();
 
-                        Connection conn = null;
+                Connection conn = null;
 
-                        try {
-                            conn = DbUtils.getConnection();
-                            JSONArray ja = getWanted(conn);
-                            out.println(ja.toString());
-                        } catch (Exception ex) {
-                            LOGGER.log(Level.SEVERE, "get wanted failed", ex);
-                            JSONObject json = new JSONObject();
-                            json.put("error", ex.toString());
-                        } 
-                    }
-                },
+                try {
+                    conn = DbUtils.getConnection();
+                    JSONArray ja = getWanted(conn);
+                    out.println(ja.toString());
+                } catch (Exception ex) {
+                    LOGGER.log(Level.SEVERE, "get wanted failed", ex);
+                    JSONObject json = new JSONObject();
+                    json.put("error", ex.toString());
+                }
+            }
+        },
         GETDEMANDS {
-                    @Override
-                    void doPerform(HttpServletRequest req, HttpServletResponse resp) throws Exception {
-                        resp.setContentType("text/plain");
-                        try {
-                            PrintWriter out = resp.getWriter();
-                            out.println(getDemands().toString());
+            @Override
+            void doPerform(HttpServletRequest req, HttpServletResponse resp) throws Exception {
+                resp.setContentType("text/plain");
+                try {
+                    PrintWriter out = resp.getWriter();
+                    out.println(getDemands().toString());
 
-                        } catch (Exception ex) {
-                            PrintWriter out = resp.getWriter();
-                            out.println(ex);
-                        }
-                    }
-                },
+                } catch (Exception ex) {
+                    PrintWriter out = resp.getWriter();
+                    out.println(ex);
+                }
+            }
+        },
         GETOFFERS {
-                    @Override
-                    void doPerform(HttpServletRequest req, HttpServletResponse resp) throws Exception {
-                        resp.setContentType("application/json");
-                        try {
-                            PrintWriter out = resp.getWriter();
-                            out.println(getOffers().toString());
+            @Override
+            void doPerform(HttpServletRequest req, HttpServletResponse resp) throws Exception {
+                resp.setContentType("application/json");
+                try {
+                    PrintWriter out = resp.getWriter();
+                    out.println(getOffers().toString());
 
-                        } catch (Exception ex) {
-                            PrintWriter out = resp.getWriter();
-                            JSONObject json = new JSONObject();
-                            json.put("error", ex.toString());
-                            out.println(json.toString());
-                        }
+                } catch (Exception ex) {
+                    PrintWriter out = resp.getWriter();
+                    JSONObject json = new JSONObject();
+                    json.put("error", ex.toString());
+                    out.println(json.toString());
+                }
 
-                    }
-                },
+            }
+        },
         GETOFFER {
-                    @Override
-                    void doPerform(HttpServletRequest req, HttpServletResponse resp) throws Exception {
-                        resp.setContentType("text/plain");
-                        try {
-                            PrintWriter out = resp.getWriter();
-                            String id = req.getParameter("id");
-                            out.println(getOffer(id).toString());
+            @Override
+            void doPerform(HttpServletRequest req, HttpServletResponse resp) throws Exception {
+                resp.setContentType("text/plain");
+                try {
+                    PrintWriter out = resp.getWriter();
+                    String id = req.getParameter("id");
+                    out.println(getOffer(id).toString());
 
-                        } catch (Exception ex) {
-                            PrintWriter out = resp.getWriter();
-                            out.println(ex);
-                        }
+                } catch (Exception ex) {
+                    PrintWriter out = resp.getWriter();
+                    out.println(ex);
+                }
 
-                    }
-                };
+            }
+        };
 
         abstract void doPerform(HttpServletRequest req, HttpServletResponse response) throws Exception;
     }

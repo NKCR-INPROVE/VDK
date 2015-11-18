@@ -1,14 +1,14 @@
-<div id="searchDiv" class="ui-widget-header">
+<div id="searchDiv">
     <form id="searchForm" action="." method="GET" onsubmit="return doSearch();"  >
         #if(${params.wanted})
             <input name="wanted" id="wanted" type="hidden" value="${params.wanted}" />
         #end
         <input name="offset" id="offset" type="hidden" value="$!{params.offset}" />
         <input name="hits" id="hits" type="hidden" value="$!{params.hits}" />
-        <input name="q" id="q" type="text" value="$!esc.html(${params.q})" size="40" style="float:left; border-right: none;" />
+        <input name="q" id="q" type="text" value="$!esc.html(${params.q})" size="40" style="float:left; width: 300px;" />
         
         <input type="hidden" name="title_suggest" id="title_suggest" value="$!{params.title_suggest}" />
-        <input value="$i18n.form.search" type="submit" onclick="doSearch();" />
+        <button  type="submit" onclick="doSearch();" >$i18n.form.search</button>
 #if(${params.onlyOffers})
     <input type="hidden" name="onlyOffers" id="onlyOffers" class="fq" value="yes" />   
 #end  

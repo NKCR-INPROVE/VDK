@@ -1,10 +1,9 @@
 #if($search.hasFilters)
 
-    <h4 class="ui-accordion-header ui-helper-reset ui-state-default ui-accordion-icons ui-corner-all ui-state-focus">
-        <img src="img/funnel.png" alt="" style="margin-top:4px;margin-left:8px;" /> 
+    <h3>
         <span>$i18n.filter.used</span>
-        <a style="float:right;margin-top:6px;margin-right:4px;" href="."><img border="0" src="img/x.png" alt="" /></a>
-    </h4>
+        <a style="float:right;" href="."><img border="0" src="img/x.png" alt="" /></a>
+    </h3>
     <ul>        
 #if(${params.exists('wanted')} && ${params.wanted} != '')
     #set($disp = $i18n.filter.nechci.desc)

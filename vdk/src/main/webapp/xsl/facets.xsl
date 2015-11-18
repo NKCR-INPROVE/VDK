@@ -193,7 +193,7 @@
                         </input>
                         <label>
                             <xsl:attribute name="for">zdrojNav_<xsl:value-of select="./@name" />_chci</xsl:attribute>
-                        include</label>
+                        i</label>
                         <input class="nechci" type="checkbox" >
                             <xsl:attribute name="onclick">zdrojNav('-<xsl:value-of select="./@name" />', this)</xsl:attribute>
                             <xsl:attribute name="id">zdrojNav_<xsl:value-of select="./@name" />_nechci</xsl:attribute>
@@ -201,7 +201,7 @@
                         </input>
                         <label>
                             <xsl:attribute name="for">zdrojNav_<xsl:value-of select="./@name" />_nechci</xsl:attribute>
-                        exclude</label>
+                        x</label>
                         <span>
                         <xsl:value-of select="rb:getString($i18n,$navName,./@name)" />
                         </span>

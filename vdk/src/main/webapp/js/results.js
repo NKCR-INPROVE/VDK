@@ -11,10 +11,10 @@ function Results() {
 
 Results.prototype = {
     init: function () {
-        $("#facets").accordion({
-            heightStyle: "content",
-            collapsible: true
-        });
+//        $("#facets").accordion({
+//            heightStyle: "content",
+//            collapsible: true
+//        });
         this.checkDifferences();
         this.zdrojNavButtons();
         this.doRange("#rokvydani_range", "#rokvydani_select", "rokvydani", true);
