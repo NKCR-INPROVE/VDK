@@ -690,7 +690,7 @@ public class Indexer {
             sb.append("<add>");
 
             SolrQuery query = new SolrQuery("code:\"" + uniqueCode + "\"");
-            query.addField("id,code,code_type,xml,bohemika");
+            query.addField("id,code,code_type,xml,bohemika,zdroj");
             query.setRows(1000);
             SolrDocumentList docs = IndexerQuery.query(opts.getString("solrIdCore", "vdk_id"), query);
             Iterator<SolrDocument> iter = docs.iterator();
@@ -712,7 +712,8 @@ public class Indexer {
                         uniqueCode,
                         (String) resultDoc.getFieldValue("code_type"),
                         (String) resultDoc.getFieldValue("id"),
-                        bohemika));
+                        bohemika,
+                        (String) resultDoc.getFieldValue("zdroj")));
 
                 total++;
 
@@ -757,7 +758,7 @@ public class Indexer {
         return demandsCache.containsKey(code);
     }
 
-    public void store(String id, String code, String codeType, boolean bohemika, String xml) throws Exception {
+    public void store(String id, String code, String codeType, boolean bohemika, String zdrojConf, String xml) throws Exception {
 
         StringBuilder sb = new StringBuilder();
         try {
@@ -768,7 +769,8 @@ public class Indexer {
                     code,
                     codeType,
                     id,
-                    bohemika));
+                    bohemika, 
+                    zdrojConf));
             sb.append("</add>");
             String url = String.format("%s/%s/update",
                     opts.getString("solrHost", "http://localhost:8080/solr"),
@@ -927,7 +929,7 @@ public class Indexer {
         try {
             StorageBrowser docs = new StorageBrowser();
             docs.setWt("json");
-            docs.setFl("id,code,code_type,bohemika,xml,timestamp");
+            docs.setFl("id,code,code_type,bohemika,xml,timestamp,zdroj");
             if (fq != null) {
                 docs.setStart(fq);
             }
@@ -962,7 +964,8 @@ public class Indexer {
                             doc.getString("code"),
                             (String) doc.getString("code_type"),
                             (String) doc.getString("id"),
-                            bohemika));
+                            bohemika,
+                            (String) doc.getString("zdroj")));
                     if (!doc.optString("timestamp").equals("")) {
                         statusJson.put(LAST_UPDATE, doc.getString("timestamp"));
                     }
@@ -1008,35 +1011,38 @@ public class Indexer {
         SolrIndexerCommiter.postData(sw.toString());
     }
 
-    private String doSorlXML(String xml, String uniqueCode, String codeType, String identifier, boolean bohemika) throws Exception {
+    private String doSorlXML(String xml, String uniqueCode, String codeType, String identifier, boolean bohemika, String zdrojConf) throws Exception {
         logger.log(Level.FINE, "Transforming {0} ...", identifier);
         StreamResult destStream = new StreamResult(new StringWriter());
         trId.setParameter("uniqueCode", uniqueCode);
         trId.setParameter("codeType", codeType);
         trId.setParameter("bohemika", Boolean.toString(bohemika));
+        trId.setParameter("zdrojConf", zdrojConf);
         trId.setParameter("sourceXml", xml);
         trId.transform(new StreamSource(new StringReader(xml)), destStream);
         StringWriter sw = (StringWriter) destStream.getWriter();
         return sw.toString();
     }
 
-    private String transformXML(String xml, String uniqueCode, String codeType, String identifier, boolean bohemika) throws Exception {
+    private String transformXML(String xml, String uniqueCode, String codeType, String identifier, boolean bohemika, String zdrojConf) throws Exception {
         logger.log(Level.FINE, "Transforming {0} ...", identifier);
         StreamResult destStream = new StreamResult(new StringWriter());
         transformer.setParameter("uniqueCode", uniqueCode);
         transformer.setParameter("codeType", codeType);
         transformer.setParameter("bohemika", Boolean.toString(bohemika));
+        transformer.setParameter("zdrojConf", zdrojConf);
         transformer.transform(new StreamSource(new StringReader(xml)), destStream);
         logger.log(Level.FINE, "Sending to index ...");
         StringWriter sw = (StringWriter) destStream.getWriter();
         return sw.toString();
     }
 
-    public void processXML(String xml, String uniqueCode, String codeType, String identifier, boolean bohemika) throws Exception {
+    public void processXML(String xml, String uniqueCode, String codeType, String identifier, boolean bohemika, String zdrojConf) throws Exception {
         logger.log(Level.FINE, "Transforming {0} ...", identifier);
         StreamResult destStream = new StreamResult(new StringWriter());
         transformer.setParameter("uniqueCode", uniqueCode);
         transformer.setParameter("bohemika", Boolean.toString(bohemika));
+        transformer.setParameter("zdrojConf", zdrojConf);
         transformer.transform(new StreamSource(new StringReader(xml)), destStream);
         logger.log(Level.FINE, "Sending to index ...");
         StringWriter sw = (StringWriter) destStream.getWriter();

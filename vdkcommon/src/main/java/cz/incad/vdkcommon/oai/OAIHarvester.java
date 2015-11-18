@@ -506,6 +506,7 @@ public class OAIHarvester {
                                 slouceni.getString("docCode"), 
                                 slouceni.getString("codeType"), 
                                 Bohemika.isBohemika(xmlStr), 
+                                opts.getString("base"),
                                 xmlStr);
                         currentDocsSent++;
                     } catch (Exception ex) {
