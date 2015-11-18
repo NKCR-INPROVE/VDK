@@ -4,7 +4,7 @@
     height: 100%;
 }
 html, body{
-    font-family: verdana, arial,helvetica, sans-serif;
+    font-family: 'Arial', sans-serif;
     font-size: 11px;
     margin: 0px;
     padding: 0px;
@@ -27,11 +27,10 @@ form{
 }
 
 a{
-    color:#CC0000;
+    color:#ed564b;
     text-decoration:none;
 }
 a:hover {
-    color:#CC0000;
     text-decoration:underline;
 }
 
@@ -96,17 +95,23 @@ a.image:hover {
     vertical-align: bottom;
 }
 
-#header .title{
+#header .title a{
     padding-left:17px;
     margin-top:2px;
     font-size:32px;
-    color:black;
+    color:#2c2c2c;
     font-weight:bold;
+}
+
+
+#header .title a:hover{
+    color:#ed564b;
+    text-decoration: none;
 }
 
 #header .subtitle{
     font-size:12px;
-    color:#CC0000;
+    color:#ed564b;
     font-weight:bold;
 }
 
@@ -579,11 +584,33 @@ table.tex td.RZ{
 }
 
 
-    .page-break{
-        page-break-after: always;
-        page-break-inside: auto;
-    }
-    
+.page-break{
+    page-break-after: always;
+    page-break-inside: auto;
+}
+
+
+.registrace{
+    text-align: center;
+    width: 550px;
+}
+
+.registrace h2{
+    text-align: center;
+    width: 100%;
+}
+.registrace label{
+    display: inline-block;
+    margin: 5px;
+    width: 250px;
+    text-align: right;
+}   
+
+
+.registrace input{
+    width: 250px;
+}   
+
 @media print {
     html, body, .main-content, div, .protokol { 
         height: auto;

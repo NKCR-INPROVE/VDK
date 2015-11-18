@@ -1,0 +1,34 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN"> 
+<html>
+#parse("html_header.vm")
+<body>
+<div id="wrapper">
+    <div id="main">
+    #parse("header.vm")
+    <div class="clear"></div>
+    <div class="registrace">
+        <form id="registrace" action="reg">
+            <h2>Žádost o registraci</h2>
+            <label for="nazev">název instituce:</label><input type="text" name="nazev" id="nazev" /><br/>
+            <label for="sigla">sigla (IČO):</label><input type="text" name="sigla" id="sigla" /><br/>
+            <label for="adresa">adresa:</label><input type="text" name="adresa" id="adresa" /><br/>
+            <label for="osoba">kontaktní osoba:</label><input type="text" name="osoba" id="osoba" /><br/>
+            <label for="telefon">telefon:</label><input type="text" name="telefon" id="telefon" /><br/>
+            <label for="email">email:</label><input type="text" name="email" id="email" /><br/>
+            <label for="prijemce">příjemce povinného výtisku:</label><input type="text" name="prijemce" id="prijemce" /><br/>
+            <label for="celostatni">celostátní:</label><input type="checkbox" name="celostatni" id="celostatni" /><br/>
+            <label for="regionalni">regionální:</label><input type="checkbox" name="regionalni" id="regionalni" /><br/>
+            <label for="periodicky">periodický:</label><input type="checkbox" name="periodicky" id="periodicky" /><br/>
+            <label for="poznamka">poznámka:</label><input type="text" name="poznamka" id="poznamka" /><br/>
+<input type="submit" value="OK" />
+
+            <div>*Registrace jen po schválení hlavním administrátorem.</div>
+
+        </form>
+    </div>
+    <div class="clear" style="height: 32px;"></div>
+    #parse("footer.vm")
+    </div>
+</div>
+</body>
+</html>
