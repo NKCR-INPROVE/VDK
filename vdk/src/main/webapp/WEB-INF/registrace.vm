@@ -20,7 +20,7 @@
             <label for="regionalni">regionální:</label><input type="checkbox" name="regionalni" id="regionalni" /><br/>
             <label for="periodicky">periodický:</label><input type="checkbox" name="periodicky" id="periodicky" /><br/>
             <label for="poznamka">poznámka:</label><input type="text" name="poznamka" id="poznamka" /><br/>
-<input type="submit" value="OK" />
+            <label></label><input type="submit" value="OK" style="width: 75px; margin: 10px;" />
 
             <div>*Registrace jen po schválení hlavním administrátorem.</div>
 

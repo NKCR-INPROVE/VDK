@@ -157,24 +157,25 @@ a.image:hover {
     text-align: center;
     position: fixed;
     bottom: 0px;
-    box-shadow: 0px -3px 5px rgba(0,0,0,0.75);
-    background-color: white;
+    border-top: 2px solid #ed564b;
+    background-color: #333333;
     width:100%;
     padding: 5px;
+    color: white;
 }
 
 /*** header ***/
 #header{
-    height:65px;
+    height:100px;
     padding:0;
     margin:0 5px;
     position:relative;
+    border-bottom: 2px solid #ed564b;
 }
 
-#header *{
-    padding:0;
-    margin:0;
-    vertical-align: bottom;
+#header .title{
+    float: left;
+    margin: 30px 0 0 30px;
 }
 
 #header .title a{
@@ -196,16 +197,37 @@ a.image:hover {
     line-height: 20px;
 }
 
+#header .menu{
+    float:right;
+    margin:10px 20px 0 0;
+    text-align: right;
+}
+
+
+#header .menu a{
+    margin:5px;
+}
+
 /** search div **/
 #searchDiv{
     font-size:0.8em;
     padding:2px;
-    border-bottom: 2px solid #ed564b;
+    margin: 30px 0 0 0;
 }
 
 #searchDiv input{
     font-size: 14px;
     font-weight: bold;
+}
+
+#searchDiv button[type='submit']{
+    position: relative;
+}
+
+
+#searchDiv button[type='submit']:hover:before {
+	color: #2F3A34;
+	transition: all 0.3s ease-out 0s;
 }
 
 .advButton{
@@ -380,11 +402,15 @@ a.image:hover {
 }
 
 #results_header{
-    background: none repeat scroll 0 0 #EEEEEE;
-    color: #000000;
+    
+    background: #ed564b;
+    color: white;
     font-size: 10px;
     margin: 0;
-    padding: 1px;
+    padding: 10px;
+}
+#results_header a:hover{
+    color: white;
 }
 
 #summary .more .ui-tabs-panel{
@@ -679,7 +705,6 @@ table.tex td.RZ{
 
 
 .registrace{
-    text-align: center;
     width: 550px;
 }
 
@@ -697,9 +722,11 @@ table.tex td.RZ{
 
 .registrace input{
     width: 250px;
-}   
+}
 
-
+.registrace input[type='checkbox']{
+    width: 20px;
+}
 
 #searchForm button[type='submit']:before {
     color: #ED564B;

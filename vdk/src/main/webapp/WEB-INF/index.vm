@@ -6,8 +6,6 @@
     <div id="main">
     #parse("header.vm")
     <div class="clear"></div>
-    #parse("searchForm.vm")
-    <div class="clear"></div>
     #parse("content.vm")
     <div class="clear" style="height: 32px;"></div>
     #parse("footer.vm")

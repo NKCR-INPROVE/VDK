@@ -1,10 +1,11 @@
 <div id="header">
-    <div class="title"  style="float:left;">
+    <div class="title">
         <a href="./"><span>$i18n.application.title</span></a>
         <br/>
         <div class="subtitle" >$i18n.header.title</div>
     </div>
-    <div style="float:right;">
+    <div class="menu">
+
         #if($logControl.logged)
             <a href="logout.vm?redirectURL=index.vm" title="logout">user: $logControl.loggedName </a>
         #else
@@ -16,8 +17,8 @@
             <a href="redirect.vm$reqAddr">login</a>
         #end
         <a href="registrace.vm">registrace</a>
-     </div>
-        <div style="text-align:right;bottom: 2px;right:2px;position: absolute;">    
+     
+     
         #if($i18n.language == 'cs')
         <a href="javascript:vdk.changeLanguage('en')">en</a>
         #else
@@ -26,6 +27,7 @@
         #if($logControl.hasRole('ADMIN'))
         &nbsp;<a href="admin.vm" title="administrace">admin</a>
         #end
-        </div>
+    #parse("searchForm.vm")
+    </div>
     
 </div>

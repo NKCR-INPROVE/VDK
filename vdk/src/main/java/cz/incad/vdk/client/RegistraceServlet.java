@@ -63,6 +63,7 @@ public class RegistraceServlet extends HttpServlet {
             
                     try {
                         Properties properties = System.getProperties();
+                        properties.setProperty("mail.smtp.host", opts.getString("mail.smtp.host", "localhost"));
                         Session session = Session.getDefaultInstance(properties);
 
                         MimeMessage message = new MimeMessage(session);
