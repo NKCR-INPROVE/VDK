@@ -49,7 +49,7 @@ Results.prototype = {
             var res = $(this).attr('id');
             var code = $(jq(res) + ">input.code").val();
             var zaznam = $(jq(res) + ">input.identifier").val();
-            $(this).find("table.tex").empty();
+            //$(this).find("table.tex").empty();
             $(jq(res) + " .ex").each(function () {
                 vdk.results.parseDocExemplars($(this), code);
             });

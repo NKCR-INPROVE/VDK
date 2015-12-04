@@ -177,10 +177,9 @@
                     <th>signatura</th>
                     <th>status</th>
                     <th>dilciKnih</th>
-
-                    <th>rocnik/svazek</th>
-                    <th>cislo</th>
-                    <th>rok</th>
+                    <th style="width:40px">rocnik/svazek</th>
+                    <th style="width:40px">cislo</th>
+                    <th style="width:40px">rok</th>
                     <th class="actions">
                         <span class="ui-icon ui-icon-plus">expand/collapse</span>
                     </th>

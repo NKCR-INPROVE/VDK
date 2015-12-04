@@ -449,12 +449,13 @@ table.tex{
     margin-left: 25px;
     border: solid #666666 1px;
     border-collapse: collapse;
-    width:80%;
+    max-width:80%;
+    min-width: 50%;
 }
 
 table.tex th{
-    background-color: #cdcdcd;
-    color: #343434;
+    background-color: #efefef;
+    color: #ED564B;
     padding: 3px;
     text-align:left;
 }
@@ -737,6 +738,20 @@ table.tex td.RZ{
     padding-right: 5px;
     position: absolute;
     transition: all 0.3s ease-out 0s;
+}
+
+
+.ui-state-default, .ui-widget-content .ui-state-default, .ui-widget-header .ui-state-default{
+    background: #ed564b;
+    color: white;
+}
+
+.ui-icon, .ui-widget-content .ui-icon {
+    background-image: url("smoothness/images/ui-icons_ffffff_256x240.png");
+}
+
+.ui-state-default .ui-icon {
+    background-image: url(smoothness/images/ui-icons_ffffff_256x240.png);
 }
 
 @media print {
