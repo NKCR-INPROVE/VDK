@@ -38,6 +38,12 @@ public class Storage {
             return null;
         }
     }
+    
+    public static SolrDocumentList getDocsByCode(String code) throws IOException, SolrServerException {
+        SolrQuery query = new SolrQuery("code:\"" + code + "\"");
+        query.setRows(100);
+        return IndexerQuery.query(Options.getInstance().getString("solrIdCore", "vdk_id"), query);
+    }
 
     public static boolean docExistsByCode(String docCode) throws IOException, SolrServerException {
         SolrQuery query = new SolrQuery("code:\"" + docCode + "\"");
