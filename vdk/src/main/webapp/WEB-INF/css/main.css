@@ -754,6 +754,10 @@ table.tex td.RZ{
     background-image: url(smoothness/images/ui-icons_ffffff_256x240.png);
 }
 
+.ui-icon.ui-icon-extlink {
+    background-image: url(smoothness/images/ui-icons_222222_256x240.png);
+}
+
 @media print {
     html, body, .main-content, div, .protokol { 
         height: auto;
