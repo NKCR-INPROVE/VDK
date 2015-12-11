@@ -882,6 +882,13 @@ public class Indexer {
         return demandsCache.containsKey(code);
     }
 
+    public void commitStorage() throws Exception{
+            String url = String.format("%s/%s/update",
+                    opts.getString("solrHost", "http://localhost:8080/solr"),
+                    opts.getString("solrIdCore", "vdk_id"));
+            SolrIndexerCommiter.postData(url, "<commit/>");
+    }
+    
     public void store(String id, String code, String codeType, boolean bohemika, String zdrojConf, String xml) throws Exception {
 
         StringBuilder sb = new StringBuilder();

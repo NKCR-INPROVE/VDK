@@ -53,15 +53,18 @@ public class VDKScheduler {
         return scheduler;
     }
     
+    public static JobDataMap setData(String conf) throws Exception{
+        Map<String, Object> map = new HashMap<String, Object>();
+        VDKJobData jobdata = new VDKJobData(conf, new JSONObject());
+        map.put("jobdata", jobdata);
+        return JobDataMapSupport.newJobDataMap(map);
+    }
     
     public static void addJob(File f) throws Exception{
         JSONObject js = new JSONObject(FileUtils.readFileToString(f, "UTF-8"));
         org.quartz.Scheduler sched = VDKScheduler.getInstance().getScheduler();
-        Map<String, Object> map = new HashMap<String, Object>();
-        VDKJobData jobdata = new VDKJobData(f.getAbsolutePath(), new JSONObject());
-        map.put("jobdata", jobdata);
         String jobName = f.getName().split("\\.")[0];
-        JobDataMap data = JobDataMapSupport.newJobDataMap(map);
+        JobDataMap data = setData(f.getAbsolutePath());
         JobDetail job = JobBuilder.newJob(VDKJob.class)
                 .withIdentity(jobName)
                 .setJobData(data)
@@ -88,10 +91,8 @@ public class VDKScheduler {
             String conf) throws SchedulerException, Exception {
 
         org.quartz.Scheduler sched = VDKScheduler.getInstance().getScheduler();
-        Map<String, Object> map = new HashMap<String, Object>();
-        VDKJobData jobdata = new VDKJobData(conf, new JSONObject());
-        map.put("jobdata", jobdata);
-        JobDataMap data = JobDataMapSupport.newJobDataMap(map);
+        
+        JobDataMap data = setData(conf);
 
         JobDetail job = JobBuilder.newJob(VDKJob.class)
                 .withIdentity(conf)

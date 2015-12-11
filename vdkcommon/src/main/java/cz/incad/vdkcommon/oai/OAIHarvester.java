@@ -121,6 +121,7 @@ public class OAIHarvester {
         // check interrupted thread
         if (jobData.isInterrupted()) {
 
+            indexer.commitStorage();
             logger.log(Level.INFO, "HARVESTER INTERRUPTED");
             return;
         }
@@ -151,15 +152,18 @@ public class OAIHarvester {
                     }
                     if (currentIndex > jobData.getStartIndex()) {
                         identifier = xmlReader.getNodeValue("//oai:record[position()=" + (j + 1) + "]/oai:header/oai:identifier/text()");
-                        
-
                         processRecord(nodes.item(j), identifier, j + 1);
                     }
                     currentIndex++;
+                    
+                    if(j%1000==0){
+                        indexer.commitStorage();
+                    }
                 }
                 logger.log(Level.INFO, "number: {0}", currentDocsSent);
             }
         }
+        indexer.commitStorage();
     }
 
     public int harvest() throws Exception {
@@ -364,7 +368,7 @@ public class OAIHarvester {
                         
                         // check interrupted thread
                         if (jobData.isInterrupted()) {
-
+                            indexer.commitStorage();
                             logger.log(Level.INFO, "HARVESTER INTERRUPTED");
                             statusJson.put(LAST_MESSAGE, "Harvester interrupted by user");
                             return null;
@@ -375,9 +379,9 @@ public class OAIHarvester {
                         writeStatus(recdate);
                         logger.log(Level.FINE, "number: {0} of {1}", new Object[]{(currentDocsSent), completeListSize});
                     }
+                    indexer.commitStorage();
                 }
             }
-
             return xmlReader.getNodeValue("//oai:resumptionToken/text()");
         } else {
             logger.log(Level.INFO, "{0} for url {1}", new Object[]{error, urlString});

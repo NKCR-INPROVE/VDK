@@ -3,6 +3,7 @@ package cz.incad.vdkcommon;
 
 import cz.incad.vdkcommon.oai.*;
 import cz.incad.vdkcommon.solr.Indexer;
+import java.io.File;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import org.json.JSONObject;
@@ -43,6 +44,7 @@ public class VDKJob implements InterruptableJob {
                 jobdata.setRuntimeOptions((JSONObject) data.get("runtime_data"));
             }else{
                 jobdata = (VDKJobData) data.get("jobdata");
+                jobdata.setRuntimeOptions(new JSONObject());
             }
             
             jobdata.load();
@@ -59,7 +61,7 @@ public class VDKJob implements InterruptableJob {
                 indexer.run();
             }
 
-            LOGGER.log(Level.INFO, "jobKey: {0}", jobKey);
+            LOGGER.log(Level.FINE, "job {0} finished", jobKey);
 
         } catch (SchedulerException ex) {
             LOGGER.log(Level.SEVERE, null, ex);
