@@ -1,4 +1,6 @@
 
+/* global vdk */
+
 vdk.eventsHandler.addHandler(function(type, configuration) {
     if (type === "demands") {
         vdk.results.init();

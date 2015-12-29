@@ -28,6 +28,7 @@ public class ReportTool {
     //private Knihovna knihovna;
 
     public void configure(Map props) {
+        protokol = null;
         req = (HttpServletRequest) props.get("request");
         type = req.getParameter("type");
         offerId = Integer.parseInt(req.getParameter("id"));

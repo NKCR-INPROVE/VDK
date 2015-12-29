@@ -323,8 +323,8 @@ Offers.prototype = {
                     if(vdk.isLogged && vdk.user.code !== val.knihovna){
                         var wanted = vdk.offers.isWanted(zaznamOffer, vdk.user.code);
                         if(wanted === null){
-                            $(this).append(vdk.actionWant(zaznamOffer, true, true));
-                            $(this).append(vdk.actionDontWant(zaznamOffer, true, true));
+                            $(this).append(vdk.actionWant(zaznamOffer, true, !val.expired));
+                            $(this).append(vdk.actionDontWant(zaznamOffer, true, true, !val.expired));
                             $(this).attr('title', dict['offer.want.unknown']);
                         }else if(wanted){
                             $(this).addClass('wanted');
@@ -332,7 +332,7 @@ Offers.prototype = {
                             $(this).append(vdk.actionDontWant(zaznamOffer, false, true));
                             $(this).attr('title', dict['chci.do.fondu']);
                         }else{
-                            $(this).append(vdk.actionWant(zaznamOffer, false, true));
+                            $(this).append(vdk.actionWant(zaznamOffer, false, !val.expired));
                             $(this).append(vdk.actionDontWant(zaznamOffer, false, false));
                             $(this).addClass('nowanted');
                             $(this).attr('title', dict['nechci.do.fondu']);
