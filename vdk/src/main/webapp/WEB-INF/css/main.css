@@ -754,7 +754,11 @@ table.tex td.RZ{
     background-image: url(smoothness/images/ui-icons_ffffff_256x240.png);
 }
 
-.ui-icon.ui-icon-extlink {
+.ui-icon.ui-icon-extlink,
+.ui-icon.ui-icon-locked,
+.ui-icon.ui-icon-unlocked,
+.offer .ui-icon.ui-icon-check,
+.ui-icon.ui-icon-clock{
     background-image: url(smoothness/images/ui-icons_222222_256x240.png);
 }
 
