@@ -422,7 +422,11 @@ Offers.prototype = {
 
         var label = $('<div/>', {class: 'label'});
         if (val.hasOwnProperty('title')) {
-            label.html(val.title + " (" + val.fields.comment + ")");
+            var html = val.title;
+            if (val.fields.hasOwnProperty('comment')) {
+                html += " (" + val.fields.comment + ")";
+            }
+            label.html(html);
         } else {
             var html = "";
             if(val.hasOwnProperty('fields')){
