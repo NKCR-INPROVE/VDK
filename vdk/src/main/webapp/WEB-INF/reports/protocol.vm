@@ -6,7 +6,9 @@
 <body class="protocol">
 
 #set($protocol = $report.protocol)
-
+#if($protocol.prejimajici.keySet().size() == 0)
+<h3>Pro tuto nabídku není žádná přejímající knihovna</h3>
+#end
 #foreach ($key in $protocol.prejimajici.keys())
 #set($prejimajici = $protocol.prejimajici.getJSONObject($key))
 
