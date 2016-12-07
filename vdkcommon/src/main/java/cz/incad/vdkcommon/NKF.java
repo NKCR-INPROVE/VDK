@@ -44,6 +44,21 @@ public class NKF {
         return false;
     }
 
+    public static boolean hasRF(NodeList nodes) {
+        try {
+            for (int i = 0; i < nodes.getLength(); i++) {
+                String signatura = nodes.item(i).getNodeValue();
+                logger.log(Level.FINE, "signatura: {0}", signatura);
+                if (signatura.startsWith("RF")) {
+                    return true;
+                }
+            }
+        } catch (Exception ex) {
+            logger.log(Level.SEVERE, null, ex);
+        }
+        return false;
+    }
+
     public static boolean hasNKF(NodeList nodes) {
         try {
             for (int i = 0; i < nodes.getLength(); i++) {
