@@ -119,7 +119,8 @@ VDK.prototype = {
         var span = $('<button/>', {class: 'offerex', style: 'float:left;'});
         var a = $('<a class="ui-icon ui-icon-flag" >');
         span.attr('title', 'přidat do nabídky');
-        a.attr('href', 'javascript:void(0)');
+        a.attr('href', '#');
+        //a.attr('href', 'javascript:void(0)');
         span.click(function () {
             vdk.offers.addToActive(code, id, ex);
         });

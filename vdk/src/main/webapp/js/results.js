@@ -100,7 +100,7 @@ Results.prototype = {
             return;
         }
                         
-        var row = $('<tr class="" data-md5="' + json.md5 + '">');
+        var row = $('<tr class="rowex '+zdroj+'" data-md5="' + json.md5 + '">');
         row.data("md5", json.md5);
         
         var icon = zdrojIcon(zdroj, json.isNKF);
@@ -109,7 +109,8 @@ Results.prototype = {
             '&path=' + json.file;
         }
         row.append('<td>' + icon +
-                '<a style="float:right;" class="ui-icon ui-icon-extlink" target="_view" href="original?id=' + zaznam + filePath + '">view</a></td>');
+          '<a style="float:right;" class="ui-icon ui-icon-extlink" target="_view" href="original?id=' + zaznam + filePath + '">view</a>' +
+          '<a style="float:right;" class="ui-icon ui-icon-tag" title="filter zdroj" href="javascript:$(\'.rowex:not(.'+zdroj+')\').toggle();">filter</a></td>');
         row.append("<td>" + jsonElement(json, "signatura") + "</td>");
         row.append("<td class=\"" + jsonElement(json, "status") + "\">" + jsonElement(json, "status", "status") + "</td>");
         row.append("<td>" + jsonElement(json, "dilchiKnih") + "</td>");
