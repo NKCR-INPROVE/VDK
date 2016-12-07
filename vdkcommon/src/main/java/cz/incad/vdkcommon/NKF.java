@@ -17,7 +17,7 @@ public class NKF {
     static String[] signs = new String[]{"I", "II", "III", "IV", "V", "VIII", "IX",
         "X", "XI", "XII", "XIII", "XIV", "XV", "XVI", "XVII", "XVIII",
         "P I", "P II", "P III", "P IV", "A", "A1", "A2", "A3", "A4", "A5", "A6", "A7", "A8", "A9", "A10", "A11", "A12", "A13", "A14", "A15 a-f",
-        "A 16", "B", "C", "D", "Diss D", "Diss T", "E", "F", "G", "GDA", "H", "HH", "CH", "MGA", "60 A - F", "71 C - F", "72", "73 A - K"
+        "A 16", "B", "C", "Diss D", "Diss T", "GDA", "HH", "CH", "MGA", "60 A - F", "71 C - F", "72", "73 A - K"
     };
 
     public static boolean isNKF(String signatura) {
