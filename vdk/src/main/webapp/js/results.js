@@ -17,6 +17,7 @@ Results.prototype = {
 //            heightStyle: "content",
 //            collapsible: true
 //        });
+        this.viewFilters = {};
         this.checkDifferences();
         this.zdrojNavButtons();
         this.doRange("#rokvydani_range", "#rokvydani_select", "rokvydani", true);
@@ -93,6 +94,28 @@ Results.prototype = {
         }
             
     },
+    setViewFilter: function(klass){
+      
+      $('.rowex').show();
+      if(this.viewFilters.hasOwnProperty(klass) && this.viewFilters[klass]){
+        //$('.rowex:not(.'+klass+')').show();
+        this.viewFilters[klass] = false;
+      } else {
+        this.viewFilters[klass] = true;
+      }
+      var klasses = '';
+      for(var k in this.viewFilters){
+        if(this.viewFilters[k]){
+          klasses += '.' + k;
+        }
+      }
+//      console.log(klasses);
+      if(klasses !== ''){
+        $('.rowex:not('+klasses+')').hide();
+      }
+      
+      
+    },
     renderDocExemplar: function(json, zaznam, zdroj, code){
         
         var sig = jsonElement(json, "signatura");
@@ -100,7 +123,7 @@ Results.prototype = {
             return;
         }
                         
-        var row = $('<tr class="rowex '+zdroj+'" data-md5="' + json.md5 + '">');
+        var row = $('<tr class="rowex '+zdroj+ ' ' + jsonElement(json, "status") + '" data-md5="' + json.md5 + '">');
         row.data("md5", json.md5);
         
         var icon = zdrojIcon(zdroj, json.isNKF);
@@ -110,9 +133,10 @@ Results.prototype = {
         }
         row.append('<td>' + icon +
           '<a style="float:right;" class="ui-icon ui-icon-extlink" target="_view" href="original?id=' + zaznam + filePath + '">view</a>' +
-          '<a style="float:right;" class="ui-icon ui-icon-tag" title="filter zdroj" href="javascript:$(\'.rowex:not(.'+zdroj+')\').toggle();">filter</a></td>');
+          '<a style="float:right;" class="ui-icon ui-icon-tag" title="filter zdroj" href="javascript:vdk.results.setViewFilter(\''+zdroj+'\');">filter</a></td>');
         row.append("<td>" + jsonElement(json, "signatura") + "</td>");
-        row.append("<td class=\"" + jsonElement(json, "status") + "\">" + jsonElement(json, "status", "status") + "</td>");
+        row.append("<td class=\"" + jsonElement(json, "status") + "\">" + jsonElement(json, "status", "status") + 
+          '<a style="float:right;" class="ui-icon ui-icon-tag" title="filter stav" href="javascript:vdk.results.setViewFilter(\''+jsonElement(json, "status")+'\');">filter</a></td>');
         row.append("<td>" + jsonElement(json, "dilchiKnih") + "</td>");
         row.append("<td>" + jsonElement(json, "svazek") + "</td>");
         row.append("<td>" + jsonElement(json, "cislo") + "</td>");
