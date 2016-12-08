@@ -173,13 +173,13 @@
             <table class="tex">
                 <thead>
                     <tr>
-                    <th></th>
-                    <th>signatura</th>
-                    <th>status</th>
+                    <th class="sortable" data-sort="zdroj">zdroj</th>
+                    <th class="sortable" data-sort="signatura">signatura</th>
+                    <th class="sortable" data-sort="status">status</th>
                     <th>dilciKnih</th>
-                    <th style="width:40px">rocnik/svazek</th>
-                    <th style="width:40px">cislo</th>
-                    <th style="width:40px">rok</th>
+                    <th style="width:40px" class="sortable" data-sort="svazek">rocnik/svazek</th>
+                    <th style="width:40px" class="sortable" data-sort="cislo">cislo</th>
+                    <th style="width:40px" class="sortable" data-sort="rok">rok</th>
                     <th class="actions">
                         <span class="ui-icon ui-icon-plus">expand/collapse</span>
                     </th>

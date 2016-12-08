@@ -54,7 +54,7 @@ Results.prototype = {
             var zaznam = $(jq(res) + ">input.identifier").val();
             //$(this).find("table.tex").empty();
             $(jq(res) + " .ex").each(function () {
-                vdk.results.parseDocExemplars($(this), code);
+                vdk.results.parseDocExemplars($(this), code, null);
             });
             var $actions = $(this).find('.docactions');
             $actions.empty();
@@ -67,7 +67,7 @@ Results.prototype = {
             
         });
     },
-    parseDocExemplars: function(div, code){
+    parseDocExemplars: function(div, code, sort){
         var json = jQuery.parseJSON($(div).data("ex")).exemplare;
         var table = $(div).find("table.tex");
         if(json.length === 0){
@@ -75,11 +75,27 @@ Results.prototype = {
             return;
         }
         
-        for(var i = 0; i<json.length; i++){
-            var jsonex = json[i].ex;
-            for(var j=0; j<jsonex.length; j++){
-                $(table).append(this.renderDocExemplar(jsonex[j], json[i].id, json[i].zdroj, code));
-            }
+        table.find('th.sortable').click(function () {
+            var col = $(this).data('sort');
+            var thediv = $(this).parents('.ex');
+            var thejson =  jQuery.parseJSON($(thediv).data("ex")).exemplare;
+            var thecode = $(this).parents('li.res').find('input.code').val();
+            var thetable = $(this).parents('table.tex');
+            vdk.results.renderTableSorted(thetable, thejson, thecode, col);
+        });
+        
+        this.renderTableSorted(table, json, code, null);
+            
+    },
+    renderTableSorted: function(table, json, code, sort){
+      table.find('tr.rowex').remove();
+      var arr = this.exemplarsAsArray(json, code);
+        if(sort !== null){
+          this.sortExemplarsByCol(arr, sort);
+        }
+        for(var i = 0; i<arr.length; i++){
+            
+                $(table).append(this.doExemplarRow(arr[i]));
         }
             
         if ($(table).find("tr.more").length > 0) {
@@ -92,7 +108,64 @@ Results.prototype = {
            $(table).find("thead>tr>th.actions").css("float","none");
            $(table).find("thead>tr>th.actions").text(" ");
         }
-            
+    },
+    sortExemplarsByCol: function(arr, col){
+      arr.sort(function(a,b) {
+        return (a[col] > b[col]) ? 1 : ((b[col] > a[col]) ? -1 : 0);
+      } );
+    },
+    exemplarsAsArray: function(json, code){
+      var arr = [];
+      for(var i = 0; i<json.length; i++){
+            var jsonex = json[i].ex;
+            for(var j=0; j<jsonex.length; j++){
+              var ex = jQuery.extend({}, jsonex[j]);
+              ex['zaznam'] = json[i].id;
+              ex['zdroj'] = json[i].zdroj;
+              ex['code'] = code;
+              arr.push(ex); //  jsonex[j], json[i].id, json[i].zdroj, code));
+            }
+        }
+        return arr;
+    },
+    doExemplarRow: function(json){
+        
+        var sig = jsonElement(json, "signatura");
+        if (sig.indexOf("SF") === 0) {
+            return;
+        }
+                        
+        var row = $('<tr class="rowex '+json.zdroj+ ' ' + jsonElement(json, "status") + '" data-md5="' + json.md5 + '">');
+        row.data("md5", json.md5);
+        
+        var icon = zdrojIcon(json.zdroj, json.isNKF);
+        var filePath = "";
+        if(json.hasOwnProperty("file")){
+            '&path=' + json.file;
+        }
+        row.append('<td>' + icon +
+          '<a style="float:right;" class="ui-icon ui-icon-extlink" target="_view" href="original?id=' + json.zaznam + filePath + '">view</a>' +
+          '<a style="float:right;" class="ui-icon ui-icon-tag" title="filter zdroj" href="javascript:vdk.results.setViewFilter(\''+json.zdroj+'\');">filter</a></td>');
+        row.append("<td>" + jsonElement(json, "signatura") + "</td>");
+        row.append("<td class=\"" + jsonElement(json, "status") + "\">" + jsonElement(json, "status", "status") + 
+          '<a style="float:right;" class="ui-icon ui-icon-tag" title="filter stav" href="javascript:vdk.results.setViewFilter(\''+jsonElement(json, "status")+'\');">filter</a></td>');
+        row.append("<td>" + jsonElement(json, "dilchiKnih") + "</td>");
+        row.append("<td>" + jsonElement(json, "svazek") + "</td>");
+        row.append("<td>" + jsonElement(json, "cislo") + "</td>");
+        row.append("<td>" + jsonElement(json, "rok") + "</td>");
+        var checks = $('<td class="actions" style="width:95px;"></td>');
+        if (vdk.isLogged !== null) {
+            this.addAkce(row, checks, json.zaznam, json.zdroj, json.code, json.md5);
+        } else {
+            checks.append('<span style="margin-left:60px;">&nbsp;</span>');
+        }
+        row.append(checks);
+
+//        exs.append(row);
+//        if (exs.children().length > 3) {
+//            $(row).addClass("more");
+//        }
+        return row;
     },
     setViewFilter: function(klass){
       

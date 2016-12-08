@@ -128,10 +128,10 @@ a.image:hover {
     cursor:wait;
 }
 
-.link {
+.link, .sortable {
     cursor:pointer;
 }
-.link:hover {
+.link:hover, .sortable:hover {
     text-decoration:underline;
 }
 .selected{
