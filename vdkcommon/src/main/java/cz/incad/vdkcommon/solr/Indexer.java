@@ -795,10 +795,10 @@ public class Indexer {
     public void indexDoc(String uniqueCode) throws Exception {
 
         try {
-            logger.log(Level.INFO, "Indexace doc {0}...", uniqueCode);
+            logger.log(Level.FINE, "Indexace doc {0}...", uniqueCode);
             StringBuilder sb = new StringBuilder();
             sb.append("<add><doc>");
-            sb.append("<field name=\"code\">"+uniqueCode+"</field>");
+            sb.append("<field name=\"code\">").append(uniqueCode).append("</field>");
             sb.append("");
             SolrQuery query = new SolrQuery("code:\"" + uniqueCode + "\"");
             query.addField("id,code,code_type,xml,bohemika,zdroj");
