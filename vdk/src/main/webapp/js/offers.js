@@ -8,9 +8,12 @@ function Offers() {
 Offers.prototype = {
     init: function(){
         this.importDialog = null;
+        this.formDialog = null;
         this.retrieve();
     },
     openForm: function () {
+      console.log(this.formDialog);
+      if(this.formDialog === null){
         this.formDialog = $("<div/>", {title: vdk.translate('offers.addToOfferForm')});
         $("body").append(this.formDialog);
         this.formDialog.load("forms/add_to_offer.vm", _.bind(function () {
@@ -25,6 +28,12 @@ Offers.prototype = {
                 }
             });
         }, this));    
+      } else {
+        this.formDialog.dialog('open');
+      }
+    },
+    clearForm: function(){
+      vdk.offers.formDialog.find('input.searcher').val('');
     },
     openSearchForm: function () {
         this.searchFormDialog = $("<div/>", {title: vdk.translate('offers.searchToOfferForm')});
