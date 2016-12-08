@@ -14,6 +14,11 @@
     <xsl:template match="/">
         <xsl:for-each select="//lst[@name='facet_counts']/lst[@name='facet_fields']/lst" >
             <h3>
+                
+            <xsl:if test="./@name='nabidka'">
+                <xsl:attribute name="onclick">$(this).next().find("ul").toggle()</xsl:attribute>
+                <xsl:attribute name="style">cursor:pointer;</xsl:attribute>
+            </xsl:if>  
                 <span><xsl:value-of select="rb:getString($i18n,concat('filter.',./@name))"/></span>
             </h3>
             <div>
@@ -108,6 +113,7 @@
         <xsl:param name="navName" />
         <xsl:param name="content" />
         <ul id="nav_nabidka">
+            <xsl:attribute name="style">display: none</xsl:attribute>
             <li><a>
             <xsl:attribute name="href">javascript:filterOffers();</xsl:attribute>
                 :: <xsl:value-of select="rb:getString($i18n,'nabidka.all','all')" />
