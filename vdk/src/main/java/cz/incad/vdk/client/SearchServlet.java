@@ -71,6 +71,13 @@ public class SearchServlet extends HttpServlet {
                             SolrQuery query = new SolrQuery();
                             
                             query.setQuery(q);
+                            String zdroj = LoggedController.knihovna(req).getCode();
+                            if("NKP".equals(zdroj)){
+                              query.addFilterQuery("zdroj:NKF OR zdroj:UKF OR zdroj:RF");
+                            } else {
+                              query.addFilterQuery("zdroj:" + zdroj);
+                            }
+                            
                             query.set("q.op", "AND");
                             if (req.getParameterValues("fq[]") != null) {
                                 for (String fq : req.getParameterValues("fq[]")) {
@@ -104,6 +111,13 @@ public class SearchServlet extends HttpServlet {
                             SolrQuery query = new SolrQuery();
                             
                             query.setQuery(field + ":\"" + value + "\"");
+                            
+                            String zdroj = LoggedController.knihovna(req).getCode();
+                            if("NKP".equals(zdroj)){
+                              query.addFilterQuery("zdroj:NKF OR zdroj:UKF OR zdroj:RF");
+                            } else {
+                              query.addFilterQuery("zdroj:" + zdroj);
+                            }
                             //query.addFilterQuery(field + ":\"" + value + "\"");
                             JSONObject json = new JSONObject(IndexerQuery.json(query));
                             out.println(json.toString());
