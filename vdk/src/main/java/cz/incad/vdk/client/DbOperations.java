@@ -778,7 +778,7 @@ public class DbOperations extends HttpServlet {
         JSONObject json = new JSONObject();
         try {
             conn = DbUtils.getConnection();
-            String sql = "select OFFER.*, KNIHOVNA.code from OFFER, KNIHOVNA where OFFER.knihovna=KNIHOVNA.knihovna_id";
+            String sql = "select OFFER.*, KNIHOVNA.code from OFFER, KNIHOVNA where OFFER.knihovna=KNIHOVNA.knihovna_id order by datum desc";
             PreparedStatement ps = conn.prepareStatement(sql);
 
             try (ResultSet rs = ps.executeQuery()) {

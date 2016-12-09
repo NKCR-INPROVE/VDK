@@ -347,7 +347,6 @@ Offers.prototype = {
                             $(this).attr('title', dict['nechci.do.fondu']);
                         }
                     }
-                    
                     if (!$(this).data("offer_ext")[offerId].hasOwnProperty('ex')) {
                         //je to nabidka na cely zaznam.
                     } else {
@@ -396,7 +395,7 @@ Offers.prototype = {
     },
     renderUserOffer: function (val) {
         var label = val.nazev;
-        $("#activeOffers").append('<option value="' + val.id + '">' + label + '</option>');
+        $("#activeOffers").prepend('<option value="' + val.id + '">' + label + '</option>');
         var li = $("<li/>", {"data-offer": val.id});
         li.addClass("offer");
         li.data("offer", val.id);
@@ -420,10 +419,10 @@ Offers.prototype = {
         }
         li.append(span);
         var a = $("<a/>");
-        a.text(label);
+        a.text(label + " (do " + val.expires + ")");
         a.attr("href", "javascript:vdk.offers.clickUser('" + val.id + "');");
         li.append(a);
-        $("#useroffers>ul").append(li);
+        $("#useroffers>ul").prepend(li);
     },
     renderDoc: function (val, closed) {
         var doc = $('<li/>', {class: 'offer', 'data-zaznamofferid': val.ZaznamOffer_id});
@@ -618,7 +617,7 @@ Offers.prototype = {
                 opts.zaznam = zaznam;
             }
             if(ex){
-                opts.exemplar = ex;
+                opts.ex = ex;
             }
             $.getJSON("db", opts, function (data) {
                 if (data.error) {
