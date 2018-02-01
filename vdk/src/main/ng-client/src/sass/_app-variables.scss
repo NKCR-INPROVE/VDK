@@ -1,0 +1,74 @@
+// --- VARIABLES --
+
+// font path
+$roboto-font-path:                "~/assets/fonts" !default;
+$mdi-font-path:                   "~/assets/fonts" !default;
+
+// colors
+$primary-color:                   color("cyan", "base") !default;
+$primary-color-light:             lighten($primary-color, 15%) !default;
+$primary-color-dark:              darken($primary-color, 15%) !default;
+
+$secondary-color:                 darken($primary-color, 5%) !default;
+$link-color:                      $primary-color !default;
+
+$app-color-white:                 color("shades", "white") !default;
+$app-color-black:                 color("shades", "black") !default;
+
+// custom
+$app-grey:                        color("grey", "base") !default; // 9e9e9e
+$app-grey-l-5:                    color("grey", "lighten-5") !default; // fafafa
+$app-grey-l-4:                    color("grey", "lighten-4") !default; // f5f5f5
+$app-grey-l-3:                    color("grey", "lighten-3") !default; // eeeeee
+$app-grey-l-2:                    color("grey", "lighten-2") !default; // e0e0e0
+$app-grey-l-1:                    color("grey", "lighten-1") !default; // bdbdbd
+
+$app-grey-d-1:                    color("grey", "darken-1") !default; // 757575
+$app-grey-d-2:                    color("grey", "darken-2") !default; // 616161
+$app-grey-d-3:                    color("grey", "darken-3") !default; // 424242
+$app-grey-d-4:                    color("grey", "darken-4") !default; // 212121
+
+$app-grey-c-2:                    color("custom", "grey-l-2") !default; // d2d2d2
+$app-grey-c-1:                    color("custom", "grey-l-1") !default; // ebebeb
+
+$app-red:                         color("red", "accent-4") !default; // d50000
+$app-orange:                      color("orange", "accent-2") !default; // ffab40
+
+// states
+$app-state-ok:                    color("green", "accent-4") !default;
+$app-state-auto:                  color("orange", "accent-2") !default;
+
+// day special
+$app-day-holiday-circle:          color("teal", "lighten-2") !default;
+$app-day-event-circle:            color("purple", "lighten-2") !default;
+$app-day-special-bg:              $app-grey-l-4 !default;
+
+// global
+$app-border-radius:               2px !default;
+
+// toolbar
+$app-toolbar-height:              50px !default;
+$app-toolbar-height-elements:     34px !default;
+
+// search bar 
+$app-search-bar-height:           44px !default;
+
+// global container
+$app-container:                   1.25rem !default;
+
+// facet col widht
+$app-facet-width:                  320px;
+
+// materialize variables
+$navbar-font-color:               lighten($primary-color, 65%) !default;
+$navbar-height:                   68px !default;
+
+$button-padding:                  0 1rem !default;
+
+$collection-active-bg-color:      color("grey", "lighten-3") !default;
+$collection-active-color:         darken($collection-active-bg-color, 55%) !default;
+$collection-hover-bg-color:       color("grey", "lighten-5") !default;
+
+$table-striped-color:             color("grey", "lighten-4") !default;
+
+$spinner-default-color:           color("orange", "base") !default;
