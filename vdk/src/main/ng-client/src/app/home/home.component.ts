@@ -1,12 +1,14 @@
 import { Component, OnInit } from '@angular/core';
-import { HttpErrorResponse } from '@angular/common/http';
+import { HttpErrorResponse, HttpHeaderResponse } from '@angular/common/http';
 
 // services
 import { DkService } from '../service/dk.service';
 import { ResultService } from '../service/result.service';
 
 // property type
-import {Dk, Result} from "../properties";
+import { Dk, Result } from "../properties";
+import { AppState } from "../app.state";
+import { SolrService } from '../service/solr.service';
 
 @Component({
   selector: 'app-home',
@@ -18,16 +20,19 @@ export class HomeComponent implements OnInit {
   nologo: string = "assets/img/nologo.png";
   dk: Dk[];
   results: Result[];
-  errorMessage: string;
-  errorStatus: string;
   toogleResults: boolean = false;
 
+
+  errorMessage: string;
+  errorStatus: string;
+
   constructor(private dkService: DkService,
-              private resultService: ResultService) { }
- 
-  ngOnInit(): void {
-    this.getDk();
-    //this.getResult();
+              private resultService: ResultService,
+              private solrService: SolrService,
+              public state: AppState) { }
+
+              
+  ngOnInit() {
   }
   
   // get digital library json
@@ -36,7 +41,7 @@ export class HomeComponent implements OnInit {
     .subscribe(
       dk => this.dk = dk, 
       (err: HttpErrorResponse) => {
-        this.errorHandler(err);
+        this.solrService.errorHandler(err);
       }
     );
   }
@@ -47,21 +52,10 @@ export class HomeComponent implements OnInit {
     .subscribe(
       results => this.results = results,
       (err: HttpErrorResponse) => {
-        this.errorHandler(err);
+        this.solrService.errorHandler(err);
       }
     );
     this.toogleResults = !this.toogleResults;
-  }
-  
-  // error handler
-  errorHandler(error: any): void {
-    if (status === '404') {
-      console.log(error);
-      return this.errorMessage = error.message, this.errorStatus = error.status;
-    } else {
-      console.log(error);
-      return this.errorMessage = error.message, this.errorStatus = error.status;
-    }
   }
 
 }

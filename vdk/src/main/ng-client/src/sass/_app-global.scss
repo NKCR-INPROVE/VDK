@@ -1,2 +1,12 @@
 // --- GLOBAL ---
 
+.app-search-field-wrapper {
+  position: relative;
+
+  .mdi-magnify {
+    position: absolute;
+    top: 0;
+    right: 0;
+    cursor: pointer;
+  }
+}

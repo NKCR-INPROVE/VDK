@@ -10,16 +10,22 @@ import {MaterializeModule} from 'ng2-materialize';
 // services
 import { DkService } from './service/dk.service';
 import { ResultService } from './service/result.service';
+import { SolrService } from './service/solr.service';
+import { AppState } from './app.state';
 
 // components
 import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
+import { SearchBarComponent } from './search-bar/search-bar.component';
+import { ResultsComponent } from './results/results.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    HomeComponent
+    HomeComponent,
+    SearchBarComponent,
+    ResultsComponent
   ],
   imports: [
     BrowserModule,
@@ -31,7 +37,7 @@ import { HomeComponent } from './home/home.component';
     ]),
     MaterializeModule.forRoot()
   ],
-  providers: [DkService, ResultService],
+  providers: [DkService, ResultService, AppState, SolrService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

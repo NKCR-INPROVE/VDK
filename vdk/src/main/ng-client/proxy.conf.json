@@ -1,10 +1,7 @@
 {
-  "/api": {
-    "target": "http://registr.digitalniknihovna.cz",
+  "/solr": {
+    "target": "http://localhost:8983",
     "secure": true,
-    "pathRewrite": {
-    "^/api": ""
-  },
     "changeOrigin": true
   }
 }

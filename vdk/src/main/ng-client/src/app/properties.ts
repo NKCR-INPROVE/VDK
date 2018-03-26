@@ -27,3 +27,9 @@ export interface Result {
   year: string;
 }
 
+export interface Solr {
+  numFound: number;
+  docs: Array<any>;
+  title: string; 
+}
+

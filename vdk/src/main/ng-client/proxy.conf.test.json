@@ -1,0 +1,10 @@
+{
+  "/api": {
+    "target": "http://registr.digitalniknihovna.cz",
+    "secure": true,
+    "pathRewrite": {
+    "^/api": ""
+  },
+    "changeOrigin": true
+  }
+}

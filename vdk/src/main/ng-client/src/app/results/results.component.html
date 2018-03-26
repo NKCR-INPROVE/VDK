@@ -1,0 +1,6 @@
+<div *ngIf="state.results?.numFound">
+  Results found: <strong>{{state.results.numFound}}</strong>
+  <ul class="browser-default">
+    <li *ngFor="let result of state.results.docs">{{result.title}}</li>
+  </ul>
+</div>
