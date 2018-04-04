@@ -1,7 +1,10 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse, HttpParams, HttpHeaders } from '@angular/common/http';
 import { Observable } from "rxjs/Observable";
-import { Solr } from '../properties'; // property type
+import { Router, ActivatedRoute, Params, NavigationExtras } from '@angular/router';
+
+import { Result } from '../models/result';
+import { Facet } from '../models/facet';
 
 import { AppState } from '../app.state';
 
@@ -11,15 +14,28 @@ export class SolrService {
   private solrUrl: string = '/solr/rdcz/select';
 
   constructor(private http: HttpClient,
+              private router: Router,
+              private activatedRoute: ActivatedRoute,
               public state: AppState) { }
 
   // get solr data
-  getSolr(): Observable<Solr[]> {
+  getSolr(params): Observable<Result[]> {
     if(this.state.q !='') {
-      return this.http.get<Solr[]>(this.solrUrl + '?q=' + this.state.q);
+      return this.http.get<Result[]>(this.solrUrl, {params: params});
     } else {
-      return this.http.get<Solr[]>(this.solrUrl + '?q=*.*');
+      return this.http.get<Result[]>(this.solrUrl + '?q=*.*');
     }
+  }
+
+  // search solr
+  searchSolr(params) {
+    this.getSolr(params)
+    .subscribe(
+      (solr) => this.state.result = solr["response"],
+      (err: HttpErrorResponse) => {
+        this.errorHandler(err);
+      }
+    );
   }
 
   // error handler
@@ -33,13 +49,45 @@ export class SolrService {
     }
   }
 
-   // console writer
-   consoleWriter(): void {
-    this.getSolr()
+  // console writer
+  consoleWriter(params): void {
+    this.getSolr(params)
     .subscribe(
       data => {
         console.log(data);
       }
     );
+  }
+
+  // do url params
+  doUrlParams(): NavigationExtras  {
+    let params = {};
+    params['q'] = this.state.q;
+    params['facet'] = this.state.facet;
+    params['rows'] = this.state.rows;
+    return params;
+  }
+
+  // set url params
+  setUrlParams(params): void {
+    if (this.router.url == '/home') {    
+      //this.router.navigate(['/results'], { queryParams: {q: this.state.q} });
+      this.router.navigate(['/results'], { queryParams: params });
+      //console.log(this.router.url);
+    } else {
+      this.router.navigate([], { queryParams: params });
+      //console.log(this.router.url);
+    }
+  }
+
+  // get params
+  getUrlParams() {
+    this.activatedRoute.queryParams.subscribe((params: Params) => {
+      if (params['q'] && params['q'] != '') {
+        this.state.q = params['q'];
+      }
+      this.state.urlParams = params;
+      console.log("Is parameter row => " + this.state.urlParams.hasOwnProperty('rows'));
+    });
   }
 }

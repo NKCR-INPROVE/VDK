@@ -1,12 +1,9 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
-import { HttpErrorResponse, HttpHeaderResponse } from '@angular/common/http';
+import { Component, OnInit } from '@angular/core';
+import { Router, ActivatedRoute, Params, NavigationExtras } from '@angular/router';
 
-// services
 import { SolrService } from '../service/solr.service';
 import { AppState } from '../app.state';
 
-// property type
-import { Solr } from "../properties";
 
 @Component({
   selector: 'app-search-bar',
@@ -15,25 +12,23 @@ import { Solr } from "../properties";
 })
 export class SearchBarComponent implements OnInit {
 
-  errorMessage: string;
-  errorStatus: string;
-
   constructor(private solrService: SolrService,
-              public state: AppState) { }
+              private state: AppState,
+              private activatedRoute: ActivatedRoute,
+              private router: Router) { }
 
   ngOnInit() {
+    this.solrService.getUrlParams();
+
+    let sparams = this.solrService.doUrlParams();
+    this.solrService.searchSolr(sparams);
   }
 
   // search in solr data
   search(): void {
-    this.solrService.getSolr()
-    .subscribe(
-      solr => this.state.results = solr["response"],
-      (err: HttpErrorResponse) => {
-        this.solrService.errorHandler(err);
-      }
-    );
-    this.solrService.consoleWriter();
+    let sparams = this.solrService.doUrlParams();
+    this.solrService.setUrlParams(sparams);
+    this.solrService.getUrlParams();
+    this.solrService.searchSolr(sparams);
   }
-
 }

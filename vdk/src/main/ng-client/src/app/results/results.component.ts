@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
+import { SolrService } from '../service/solr.service';
 import { AppState } from '../app.state';
 
 @Component({
@@ -9,9 +10,9 @@ import { AppState } from '../app.state';
 })
 export class ResultsComponent implements OnInit {
 
-  constructor(public state: AppState) { }
+  constructor(public state: AppState,
+              private solrService: SolrService) { }
 
   ngOnInit() {
   }
-
 }

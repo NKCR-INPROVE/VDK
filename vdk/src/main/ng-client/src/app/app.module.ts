@@ -8,8 +8,6 @@ import { RouterModule } from '@angular/router';
 import {MaterializeModule} from 'ng2-materialize';
 
 // services
-import { DkService } from './service/dk.service';
-import { ResultService } from './service/result.service';
 import { SolrService } from './service/solr.service';
 import { AppState } from './app.state';
 
@@ -18,6 +16,7 @@ import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
 import { SearchBarComponent } from './search-bar/search-bar.component';
 import { ResultsComponent } from './results/results.component';
+import { NavbarComponent } from './navbar/navbar.component';
 
 
 @NgModule({
@@ -25,19 +24,21 @@ import { ResultsComponent } from './results/results.component';
     AppComponent,
     HomeComponent,
     SearchBarComponent,
-    ResultsComponent
+    ResultsComponent,
+    NavbarComponent
   ],
   imports: [
     BrowserModule,
     HttpModule,
     HttpClientModule,
     RouterModule.forRoot([
+      { path: 'results', component: ResultsComponent },
       { path: 'home', component: HomeComponent },
       { path: '', redirectTo: '/home', pathMatch: 'full' }
     ]),
     MaterializeModule.forRoot()
   ],
-  providers: [DkService, ResultService, AppState, SolrService],
+  providers: [AppState, SolrService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

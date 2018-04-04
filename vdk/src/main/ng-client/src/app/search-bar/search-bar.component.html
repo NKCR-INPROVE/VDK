@@ -1,4 +1,4 @@
 <div class="app-search-field-wrapper">
-  <input #q (keydown.enter)="search()" [(ngModel)]="state.q"><!-- (keyup)="getSolr(query.value)" -->
+  <input #q name="q" id="q" (keydown.enter)="search()" [(ngModel)]="state.q">
   <i mz-icon-mdi [icon]="'magnify'" (click)="search()"></i>
 </div>
