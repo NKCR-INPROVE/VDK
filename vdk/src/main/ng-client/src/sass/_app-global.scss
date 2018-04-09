@@ -1,12 +1,27 @@
 // --- GLOBAL ---
 
-.app-search-field-wrapper {
-  position: relative;
+// cleaners
+.clearfix {
+  @include clearfix();
+}
 
-  .mdi-magnify {
-    position: absolute;
-    top: 0;
-    right: 0;
-    cursor: pointer;
-  }
+.app-clear-mg {
+  margin: 0 !important;
+}
+
+.app-clear-pd {
+  padding: 0 !important;
+}
+
+.app-clear-border {
+  border: none !important;
+}
+
+.app-clear-shadow {
+  box-shadow: none !important;
+}
+
+// common
+.app-cursor-pointer {
+  cursor: pointer;
 }

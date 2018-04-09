@@ -1,0 +1,121 @@
+// --- SEARCH BOX ---
+
+.container {
+  background-color: $primary-color; 
+  padding: .75rem 0;
+  border-radius: $button-radius;
+
+  .row {
+    @extend .app-clear-mg;
+
+    .col {
+      &:first-child {
+        .app-form-group {
+          position: relative;
+          border-radius: $button-radius;
+          box-shadow:  0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12), 0 3px 1px -2px rgba(0, 0, 0, 0.01);
+          &:focus, &:hover {
+            box-shadow: 0 6px 10px 0 rgba(0, 0, 0, 0.14), 0 1px 18px 0 rgba(0, 0, 0, 0.12), 0 3px 5px -1px rgba(0, 0, 0, 0.03);
+          }
+
+          .input-field {
+            @extend .app-clear-mg;
+
+            input[type=search] {
+              @extend .app-clear-mg;
+              @extend .app-clear-border;
+              @extend .app-clear-shadow;
+              padding: 0 3rem;
+              width: calc(100% - 6rem);
+            }
+
+            .mdi-magnify {
+              @extend .app-cursor-pointer;
+              position: absolute;
+              top: 5px;
+              left: 0.8rem;
+            }
+            
+            .mdi-close {
+              position: absolute;
+              top: 0.3rem;
+              right: 0.8rem;
+            }
+          }
+        }
+       /*  .app-form-group {
+          position: relative;
+          //@extend .app-border-radius; 
+          box-shadow:  0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12), 0 3px 1px -2px rgba(0, 0, 0, 0.01);
+          &:focus, &:hover {
+            box-shadow: 0 6px 10px 0 rgba(0, 0, 0, 0.14), 0 1px 18px 0 rgba(0, 0, 0, 0.12), 0 3px 5px -1px rgba(0, 0, 0, 0.03);
+          }
+          .mdi-magnify {
+            position: absolute;
+            top: 0.1rem;
+            left: 0.5rem;
+          }
+          .mdi-navigation-close,
+          .mdi-close,
+          .app-mdi-menu {
+            position: absolute;
+            font-size: inherit;
+          }
+          .app-mdi-menu {
+            top: 0.5rem;
+            right: 0.5rem;
+            padding-left: 5px;
+            @include set-border(left, 1, solid,silver);
+          }
+          .mdi-navigation-close,
+          .mdi-close {
+            top: 0.1rem;
+            right: 2.7rem;
+            @extend .app-cursor-pointer;
+          }
+          input[type=search] {
+            border: 0;
+            padding-left: 2.5rem;
+            padding-right: 0.5rem;
+            width: calc(100% - 7rem);
+            
+            &::-ms-clear {
+              display: none; // for IE - not display his display button
+            }
+          }
+          .input-field {
+            mz-card {
+              &.collapse {
+                display: none;
+              }
+            }
+            .card {
+              position: absolute;
+              z-index: 1080;
+              margin: 1px 0 0 0;
+              width: 100%;
+              
+              .card-content {
+                padding: 10px;
+                
+                .input-field {
+                  input[type=text] {
+                    height: 2rem;
+                    margin-bottom: 5px;
+                  }
+                  label {
+                    top: 0.2rem;
+                    
+                    &:not(.label-icon).active {
+                      top: 0.6rem;
+                    }
+                  }
+                }
+              }
+            }
+          }
+        } */
+      }
+    }
+  }
+}

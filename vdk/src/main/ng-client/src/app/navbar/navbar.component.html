@@ -1,7 +1,20 @@
 <mz-navbar>
-  <a href="#" class="brand-logo">Vdk search</a>
-  <mz-navbar-item-container [align]="'right'">
-    <mz-navbar-item><a routerLink="home">Home</a></mz-navbar-item>
-    <mz-navbar-item><a routerLink="results">Results</a></mz-navbar-item>
-  </mz-navbar-item-container>
+  <div class="container">
+    <div class="row">
+      <div class="col s12">
+        <a href="#" class="brand-logo">
+          {{'app.title' | translate}}
+          <!-- <div>{{'app.desc' | translate}}</div> -->
+        </a>
+          <mz-navbar-item-container [align]="'right'">
+            <mz-navbar-item><a routerLink="home">Home</a></mz-navbar-item>
+            <mz-navbar-item><a routerLink="results">Results</a></mz-navbar-item>
+            <mz-navbar-item><a href="#!">Export</a></mz-navbar-item>
+            <mz-navbar-item><a href="#!">Login</a></mz-navbar-item>
+            <mz-navbar-item><a href="#!">Registrace</a></mz-navbar-item>
+            <mz-navbar-item><a href="#!">cs</a></mz-navbar-item>
+          </mz-navbar-item-container>
+      </div>
+    </div>
+  </div>
 </mz-navbar>

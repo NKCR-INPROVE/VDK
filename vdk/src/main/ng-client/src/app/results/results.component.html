@@ -1,14 +1,28 @@
-<h4>Search in VDK</h4> 
-<div class="row">
-  <div class="col s12">
-    <app-search-bar></app-search-bar>
-  </div>
-  <div class="col s12">
-    <div>
-      Results found: <strong>{{state.result?.numFound}}</strong>
-      <ul *ngIf="state.result?.numFound" class="browser-default">
-        <li *ngFor="let result of state.result.docs">{{result.title}}</li>
-      </ul>
+<div class="container">
+  <div class="row">
+    <div class="col s12">
+      <div class="clearfix">
+        <app-results-count></app-results-count>
+        <app-results-pagination class="right"></app-results-pagination>
+      </div>
     </div>
   </div>
-</div> 
+  <div class="row">
+    <div class="col s4">
+      <div class="red">
+        <app-results-facets-used></app-results-facets-used>
+      </div>
+      <div class="yellow">
+        <app-results-facets></app-results-facets>
+      </div>
+    </div>
+    <div class="col s8">
+      <div *ngIf="state.errorMessage" class="red white-text" style="padding: 5px 10px; border-radius: 2px">
+        <strong>ERROR!</strong> | {{state.errorStatus}} | <em>{{state.errorMessage}}</em>
+      </div>
+      <div *ngIf="state.result?.numFound">
+        <app-results-item *ngFor="let result of state.result.docs" [item]="result"></app-results-item>
+      </div>
+    </div>
+  </div> 
+</div>

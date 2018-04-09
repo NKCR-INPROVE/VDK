@@ -65,6 +65,10 @@ export class SolrService {
     params['q'] = this.state.q;
     params['facet'] = this.state.facet;
     params['rows'] = this.state.rows;
+    params["facet.field"] = [];
+    for(let field of this.state.facets) {
+      params["facet.field"].push(field);
+    }
     return params;
   }
 
@@ -76,6 +80,7 @@ export class SolrService {
       //console.log(this.router.url);
     } else {
       this.router.navigate([], { queryParams: params });
+      //this.router.navigate([params]);
       //console.log(this.router.url);
     }
   }
@@ -86,8 +91,16 @@ export class SolrService {
       if (params['q'] && params['q'] != '') {
         this.state.q = params['q'];
       }
+      if (params.hasOwnProperty('rows')) {
+        this.state.rows = params['rows'];
+      }
+      if (params.hasOwnProperty('facet')) {
+        this.state.facet = params['facet'];
+      }
+      if (params.hasOwnProperty('facet.field')) {
+        this.state.facets = params['facet.field'];
+      }
       this.state.urlParams = params;
-      console.log("Is parameter row => " + this.state.urlParams.hasOwnProperty('rows'));
     });
   }
 }

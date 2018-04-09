@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { Router, ActivatedRoute, Params, NavigationExtras } from '@angular/router';
 
 import { SolrService } from '../service/solr.service';
 import { AppState } from '../app.state';
@@ -13,15 +12,14 @@ import { AppState } from '../app.state';
 export class SearchBarComponent implements OnInit {
 
   constructor(private solrService: SolrService,
-              private state: AppState,
-              private activatedRoute: ActivatedRoute,
-              private router: Router) { }
+              private state: AppState) { }
 
   ngOnInit() {
     this.solrService.getUrlParams();
 
-    let sparams = this.solrService.doUrlParams();
+    /* let sparams = this.solrService.doUrlParams();
     this.solrService.searchSolr(sparams);
+    this.solrService.consoleWriter(sparams); */
   }
 
   // search in solr data

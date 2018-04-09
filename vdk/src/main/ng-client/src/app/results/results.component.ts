@@ -14,5 +14,7 @@ export class ResultsComponent implements OnInit {
               private solrService: SolrService) { }
 
   ngOnInit() {
+    let sparams = this.solrService.doUrlParams();
+    this.solrService.searchSolr(sparams);
   }
 }

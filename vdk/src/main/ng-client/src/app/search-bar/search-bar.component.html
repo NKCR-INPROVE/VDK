@@ -1,4 +1,24 @@
-<div class="app-search-field-wrapper">
-  <input #q name="q" id="q" (keydown.enter)="search()" [(ngModel)]="state.q">
-  <i mz-icon-mdi [icon]="'magnify'" (click)="search()"></i>
+<div class="container">
+  <div class="row">
+    <div class="col s6">
+      <form class="app-form-group shades white">
+        <div class="input-field app-clean-mg">
+          <input #q name="q" id="q" type="search" (keydown.enter)="search()" [(ngModel)]="state.q" autocomplete="off">
+          <i mz-icon-mdi [icon]="'magnify'" (click)="search()"></i>
+          <i mz-button id="btn-advanced-search" class="app-mdi-menu app-cursor-pointer"></i>
+          <i *ngIf="state.q" mz-icon-mdi [icon]="'close'"></i>
+        </div>
+      </form>
+    </div>
+    <div class="col s6">
+      <button mz-button id="app-btn-other-sources" href="javascript:void(0)" class="right">
+        Pohledy
+      </button>
+      <mz-dropdown [id]="'dropdown-other-sources'" [dropdownButtonId]="'app-btn-other-sources'">
+        <mz-dropdown-item><a>Bohemia</a></mz-dropdown-item>
+        <mz-dropdown-item><a>Bohemia PK</a></mz-dropdown-item>
+        <mz-dropdown-item><a>Ztrata</a></mz-dropdown-item>
+      </mz-dropdown>
+    </div>
+  </div>
 </div>

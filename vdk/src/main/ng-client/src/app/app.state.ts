@@ -12,6 +12,10 @@ export class AppState {
   public q: string;
   rows: number = 15;
   facet: boolean = false;
+  facets: any = [
+    "stav",
+    "druhdokumentu"
+  ];
   urlParams: {};
 
   result: Result[];
@@ -22,4 +26,8 @@ export class AppState {
   clearParams() {
     this.q = '';
   }
+
+
 }
+
+// ?facet.field=stav&facet.field=druhdokumentu&facet=on&fq=stav:progress&indent=on&q=hrad&wt=json

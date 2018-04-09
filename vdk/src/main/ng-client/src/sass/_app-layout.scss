@@ -1,0 +1,68 @@
+// --- LAYOUT ---
+html {
+  height: 100%;
+}
+
+body, 
+app-root {
+  display: flex;
+  display: -webkit-box;
+  display: -webkit-flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -webkit-flex-direction: column;
+  flex-direction: column;
+  height: 100%;
+  position: relative;
+  
+  > .preloader-wrapper {
+    margin-top: 100px;
+  }
+}
+
+main {
+  -webkit-box-flex: 1;
+  -webkit-flex: 1 0 auto;
+  flex: 1 0 auto;
+  width: 100%;
+  position: relative;
+}
+
+header {
+  app-navbar {
+    @import "app-navbar";
+  }
+  app-search-bar {
+    @import "app-search-bar";
+  }
+}
+
+main {
+  app-results {
+    @import "app-results";
+
+    app-results-count {
+      height: 60px;
+      line-height: 60px;
+      
+      @import "app-results-count";
+    }
+    app-results-facets-used {
+      @import "app-results-facets-used";
+    }
+    app-results-facets {
+      @import "app-results-facets";
+    }
+    app-results-item {
+      @import "app-results-item";
+    }
+  }
+}
+
+footer {
+  @extend .app-clear-pd;
+
+  app-footer {
+    @import "app-footer";
+  }
+}
