@@ -1,0 +1,13 @@
+// --- RESULTS ---
+
+.container {
+  .row {
+    .col {
+      &:first-child {
+        & > div {
+          @include set-border(bottom, 2, solid, $primary-color);
+        }
+      }
+    }
+  }
+}

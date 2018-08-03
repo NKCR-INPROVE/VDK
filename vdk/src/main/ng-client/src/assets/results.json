@@ -1,0 +1,223 @@
+[
+  {
+    "id": 1,
+    "title": "Vlak osamělého muže",
+    "authors": [
+      "Hejkalová, Markéta",
+      "Waltari, Mika"
+    ],
+    "publisher": [
+      "Česká akademie věd a umění, (Praha :, 1926)"
+    ],
+    "table": [
+      {
+        "source": {
+          "code": "vkol",
+          "url": "http://vdk.nkp.cz/vdk/original?id=oai:aleph.svkhk.cz:HKA01-000906153",
+          "logo": "http://registr.digitalniknihovna.cz/libraries/vkol/logo"
+        },
+        "signature": "1-339.965",
+        "status": "processing",
+        "type": "",
+        "volume": "",
+        "number": "",
+        "year": ""
+      },
+      {
+        "source": {
+          "code": "svkhk",
+          "url": "http://vdk.nkp.cz/vdk/original?id=oai:aleph.vkol.cz:SVK01-001231150",
+          "logo": "http://registr.digitalniknihovna.cz/libraries/svkhk/logo"
+        },
+        "signature": "A0-54251",
+        "status": "absent",
+        "type": "",
+        "volume": "",
+        "number": "",
+        "year": ""
+      }
+    ]
+  },
+  {
+    "id": 2,
+    "title": "V každém okně Julie : Dívčí román",
+    "authors": [
+      "Rudolf, Stanislav",
+      "Houba, Michal"
+    ],
+    "publisher": [
+      "Erika, (Praha :, 1995)"
+    ],
+    "table": [
+      {
+        "source": {
+          "code": "vkol",
+          "url": "http://vdk.nkp.cz/vdk/original?id=oai:aleph.vkol.cz:SVK01-000054923",
+          "logo": "http://registr.digitalniknihovna.cz/libraries/vkol/logo"
+        },
+        "signature": "773.678",
+        "status": "absent",
+        "type": "",
+        "volume": "",
+        "number": "",
+        "year": ""
+      },
+      {
+        "source": {
+          "code": "nkp",
+          "url": "http://vdk.nkp.cz/vdk/original?id=oai:aleph-nkp.cz:NKC01-000094986",
+          "logo": "http://registr.digitalniknihovna.cz/libraries/nkp/logo"
+        },
+        "signature": "I 344571",
+        "status": "archive",
+        "type": "",
+        "volume": "",
+        "number": "",
+        "year": ""
+      },
+      {
+        "source": {
+          "code": "nkp",
+          "url": "http://vdk.nkp.cz/vdk/original?id=oai:aleph-nkp.cz:NKC01-000094986",
+          "logo": "http://registr.digitalniknihovna.cz/libraries/nkp/logo"
+        },
+        "signature": "54 H 154170",
+        "status": "present",
+        "type": "",
+        "volume": "",
+        "number": "",
+        "year": ""
+      },
+      {
+        "source": {
+          "code": "nkp",
+          "url": "http://vdk.nkp.cz/vdk/original?id=oai:aleph-nkp.cz:NKC01-000094986",
+          "logo": "http://registr.digitalniknihovna.cz/libraries/nkp/logo"
+        },
+        "signature": "RF B 191939",
+        "status": "reserve",
+        "type": "",
+        "volume": "",
+        "number": "",
+        "year": ""
+      },
+      {
+        "source": {
+          "code": "cbvk",
+          "url": "http://vdk.nkp.cz/vdk/original?id=oai:aleph-nkp.cz:NKC01-000094986",
+          "logo": "http://registr.digitalniknihovna.cz/libraries/cbvk/logo"
+        },
+        "signature": "C 150.424 V",
+        "status": "absent",
+        "type": "",
+        "volume": "",
+        "number": "",
+        "year": ""
+      },
+      {
+        "source": {
+          "code": "cbvk",
+          "url": "http://vdk.nkp.cz/vdk/original?id=oai:katalog.cbvk.cz:CbvkUsCat/m0311081",
+          "logo": "http://registr.digitalniknihovna.cz/libraries/cbvk/logo"
+        },
+        "signature": "C 150.424 DK",
+        "status": "absent",
+        "type": "",
+        "volume": "",
+        "number": "",
+        "year": ""
+      },
+      {
+        "source": {
+          "code": "cbvk",
+          "url": "http://vdk.nkp.cz/vdk/original?id=oai:katalog.cbvk.cz:CbvkUsCat/m0311081",
+          "logo": "http://registr.digitalniknihovna.cz/libraries/cbvk/logo"
+        },
+        "signature": "C 150.424 v1",
+        "status": "absent",
+        "type": "",
+        "volume": "",
+        "number": "",
+        "year": ""
+      },
+      {
+        "source": {
+          "code": "svkhk",
+          "url": "http://vdk.nkp.cz/vdk/original?id=oai:aleph.svkhk.cz:HKA01-000063655",
+          "logo": "http://registr.digitalniknihovna.cz/libraries/svkhk/logo"
+        },
+        "signature": "456 866",
+        "status": "absent",
+        "type": "",
+        "volume": "",
+        "number": "",
+        "year": ""
+      },
+      {
+        "source": {
+          "code": "mzk",
+          "url": "http://vdk.nkp.cz/vdk/original?id=oai:aleph.mzk.cz:MZK01-000021465",
+          "logo": "http://registr.digitalniknihovna.cz/libraries/mzk/logo"
+        },
+        "signature": "2-1009.171",
+        "status": "absent",
+        "type": "",
+        "volume": "",
+        "number": "",
+        "year": ""
+      },
+       {
+        "source": {
+          "code": "mzk",
+          "url": "http://vdk.nkp.cz/vdk/original?id=oai:aleph.mzk.cz:MZK01-000021465",
+          "logo": "http://registr.digitalniknihovna.cz/libraries/mzk/logo"
+        },
+        "signature": "PK-0123.150",
+        "status": "absent",
+        "type": "",
+        "volume": "",
+        "number": "",
+        "year": ""
+      }
+    ]
+  },
+  {
+    "id": 3,
+    "title": "Vlak osamělého muže",
+    "authors": [
+      "Hejkalová, Markéta",
+      "Waltari, Mika"
+    ],
+    "publisher": [
+      "Česká akademie věd a umění, (Praha :, 1926)"
+    ],
+    "table": [
+      {
+        "source": {
+          "code": "vkol",
+          "url": "http://vdk.nkp.cz/vdk/original?id=oai:aleph.svkhk.cz:HKA01-000906153",
+          "logo": "http://registr.digitalniknihovna.cz/libraries/vkol/logo"
+        },
+        "signature": "1-339.965",
+        "status": "processing",
+        "type": "",
+        "volume": "",
+        "number": "",
+        "year": ""
+      },
+      {
+        "source": {
+          "code": "svkhk",
+          "url": "http://vdk.nkp.cz/vdk/original?id=oai:aleph.vkol.cz:SVK01-001231150",
+          "logo": "http://registr.digitalniknihovna.cz/libraries/svkhk/logo"
+        },
+        "signature": "A0-54251",
+        "status": "absent",
+        "type": "",
+        "volume": "",
+        "number": "",
+        "year": ""
+      }
+    ]
+  }
+]

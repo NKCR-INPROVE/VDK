@@ -1,0 +1,9 @@
+{
+  "app": {
+    "title": "Virtual deposite library",
+    "desc": "Kooperativní systém pro budování a správu novodobých konzervačních knižních sbírek v České Republice"
+  },
+  "count": "Count of search results",
+  "q.placeholder": "Search in virtual depoiste library ...",
+  "dummy": ""
+}

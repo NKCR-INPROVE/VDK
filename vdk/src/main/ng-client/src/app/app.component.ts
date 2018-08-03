@@ -1,17 +1,20 @@
 import { Component } from '@angular/core';
 
+import { TranslateService } from '@ngx-translate/core';
+
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = 'app';
-  view: boolean;
-  rows = [1, 2, 3, 4, 5, 6, 7, 8, 9];
-  text: string = "Vestibulum erat nullaVestibulum erat nulla";
-  toggle(){
-	  this.view = !this.view;
-	  this.text += this.text;
+  
+  constructor(translate: TranslateService) {
+    // this language will be used as a fallback when a translation isn't found in the current language
+    translate.setDefaultLang('en');
+
+    // the lang to use, if the lang isn't available, it will use the current loader to get them
+    translate.use('cs');
   }
+
 }

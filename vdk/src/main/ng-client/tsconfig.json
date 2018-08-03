@@ -2,6 +2,11 @@
   "compileOnSave": false,
   "compilerOptions": {
     "outDir": "./dist/out-tsc",
+    "baseUrl": "src",
+    "types": [
+      "jquery",
+      "materialize-css"
+    ],
     "sourceMap": true,
     "declaration": false,
     "moduleResolution": "node",

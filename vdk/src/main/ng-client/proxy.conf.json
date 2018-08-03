@@ -1,0 +1,7 @@
+{
+  "/solr": {
+    "target": "http://localhost:8983",
+    "secure": true,
+    "changeOrigin": true
+  }
+}
